@@ -1,0 +1,120 @@
+/* Scroll-driven intro: the student pushes the black panel off to the right.
+   JS sets --t (0 → 1) on .stage; everything else is CSS. */
+
+.track {
+  position: relative;
+  height: 320vh;
+  background: #fff;
+}
+.track.static { height: 100svh; }
+
+.stage {
+  --t: 0;
+  --start: 64vw;                    /* where the panel's left edge starts */
+  --sw: clamp(150px, 17vw, 260px);  /* student width */
+  --travel: calc(100vw - var(--start) + var(--sw) + 60px);
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: #fff;
+}
+
+.brand {
+  position: absolute;
+  left: var(--gutter);
+  top: 28px;
+  z-index: 3;
+}
+
+.title {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-46%, -50%);
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--red);
+  font-size: clamp(84px, 15.5vw, 240px);
+  line-height: .86;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 1;
+}
+.title span { display: block; }
+.title span:first-child { padding-left: .23em; }
+
+.tagline {
+  position: absolute;
+  right: var(--gutter);
+  top: 30px;
+  text-align: right;
+  z-index: 1;
+  opacity: calc(var(--t) * 1.4 - .4);
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--start);
+  width: 100vw;
+  background: #000;
+  z-index: 2;
+  transform: translateX(calc(var(--t) * var(--travel)));
+  will-change: transform;
+}
+.panelNote {
+  position: absolute;
+  left: 32px;
+  bottom: 36px;
+  color: #6b6b6b;
+  font-size: 12px;
+  margin: 0;
+}
+
+.student {
+  position: absolute;
+  z-index: 2;
+  width: var(--sw);
+  bottom: 12svh;
+  left: calc(var(--start) - var(--sw) * 0.965);
+  transform: translateX(calc(var(--t) * var(--travel)));
+  will-change: transform;
+}
+
+.hint {
+  position: absolute;
+  left: var(--gutter);
+  bottom: 32px;
+  width: min(360px, 60vw);
+  z-index: 3;
+}
+.bar { height: 3px; background: var(--ground); margin: 8px 0; }
+.bar span { display: block; height: 3px; background: var(--red); width: calc(var(--t) * 100%); }
+
+.done {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  z-index: 3;
+  opacity: calc(var(--t) * 4 - 3);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.arrow { animation: nudge 1.4s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateY(6px); } }
+
+@media (max-width: 700px) {
+  .stage { --start: 60vw; --sw: 36vw; }
+  .title { top: 40%; }
+  .student { bottom: 18svh; }
+  .tagline { top: auto; bottom: 90px; }
+}
