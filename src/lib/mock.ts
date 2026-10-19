@@ -3,7 +3,7 @@
  * Everything here is fictional. The backend team will replace these exports
  * with API calls of the same shape (see src/lib/types.ts and docs/ARCHITECTURE.md).
  */
-import type { ClassSection, Lesson, Portfolio, Student, Submission } from "./types";
+import type { ClassSection, Lesson, Portfolio, StudioProgress, Student, Submission } from "./types";
 
 export const demoSchool = { id: "sch_demo", name: "Demo Public School", city: "Greater Noida", board: "CBSE" };
 
@@ -196,3 +196,33 @@ export const announcements = [
   { date: "16 Oct", text: "New: Hindi slides for Mera Portfolio lessons 1–4." },
   { date: "10 Oct", text: "CBSE circular on CT & AI assessment — what it means for your marks export." },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Class 6 Studio — DEMO DATA. Every number below is sample data.      */
+/* ------------------------------------------------------------------ */
+
+export const studioDemo: StudioProgress = {
+  student: { id: "6B-12", firstName: "Riya", name: "Riya S.", classLabel: "Class 6B", school: "Green Valley Public School" },
+  today: "Monday · Week 14 of 2026-27",
+  hours: { ct: 18, ai: 6, project: 12 },
+  ct: { 1: "done", 2: "done", 3: "done", 4: "in-progress", 5: "now", 6: "up-next", 7: "up-next", 8: "up-next", 9: "up-next", 10: "up-next" },
+  ai: { 1: "done", 2: "in-progress", 3: "up-next", 4: "up-next" },
+  strengths: [
+    { strand: "Abstract thinking", level: 3 },
+    { strand: "Pattern recognition", level: 4 },
+    { strand: "Decomposition", level: 2 },
+    { strand: "Algorithmic thinking", level: 3 },
+  ],
+  continue: {
+    eyebrow: "Continue · CT Chapter 5 · Prime Time · Activity Time",
+    title: "Circle of 12: make a star",
+    line: "Connect 12 points by adding 2, 3, 4, 5… Why does 5 make a star?",
+    href: "/studio/ct/5",
+    progress: "2 of 5 rows done.",
+  },
+  projects: [
+    { slug: "data-detectives", number: 1, title: "Data Detectives", line: "How does our class travel to school?", status: "Stage 3 of 6 · 12 h logged" },
+    { slug: "cyber-suraksha", number: 2, title: "Cyber Suraksha Squad", line: "A digital-safety campaign for juniors", status: "opens in Term 2" },
+  ],
+  wallHighlight: { quote: "Aarav’s pattern stumped 21 of us. Try ‘Hexagons & Diamonds’ remix.", href: "/studio/wall" },
+};

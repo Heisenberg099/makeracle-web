@@ -73,3 +73,25 @@ export type Portfolio = {
   badges: string[];
   certificates: { title: string; code: string; issued: string }[];
 };
+
+/* ------------------------------------------------------------------ */
+/* Class 6 Studio                                                      */
+/* ------------------------------------------------------------------ */
+
+export type JourneyStatus = "done" | "in-progress" | "now" | "up-next";
+
+/** One student's progress through the Class 6 CT & AI journey. */
+export type StudioProgress = {
+  student: { id: string; firstName: string; name: string; classLabel: string; school: string };
+  /** e.g. "Monday · Week 14 of 2026-27" */
+  today: string;
+  /** Hours logged against the CBSE requirement (40 CT / 20 AI / 40 projects). */
+  hours: { ct: number; ai: number; project: number };
+  ct: Record<number, JourneyStatus>;
+  ai: Record<number, JourneyStatus>;
+  /** 1–5, from the student's answers so far. */
+  strengths: { strand: "Abstract thinking" | "Pattern recognition" | "Decomposition" | "Algorithmic thinking"; level: number }[];
+  continue: { eyebrow: string; title: string; line: string; href: string; progress: string };
+  projects: { slug: string; number: number; title: string; line: string; status: string }[];
+  wallHighlight: { quote: string; href: string } | null;
+};
