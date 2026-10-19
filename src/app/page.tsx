@@ -23,8 +23,12 @@ export default function HomePage() {
       <ScrollIntro />
       <SiteHeader />
       <main id="main">
-        <Hero />
-        <AlumniBar />
+        {/* Hero + alumni bar fill exactly one screen below the header */}
+        <div className={s.screen}>
+          <Hero />
+          <AlumniBar />
+        </div>
+        <BookStrip />
         <CbseRequirement />
         <HowItWorks />
         <WhatStudentsBuild />
@@ -58,24 +62,9 @@ function Hero() {
         </div>
 
         <div className={`${s.c1} ${s.r1} ${s.rel}`}>
-          <p className="lbl">Jump to</p>
-          <nav className={s.nav} aria-label="Home sections">
-            <Link href="/for-schools">For Schools</Link>
-            <Link href="/programmes" style={{ paddingLeft: 18 }}>
-              → Programmes
-            </Link>
-            <Link href="/workshops">Workshops</Link>
-            <Link href="/teachers">For Teachers</Link>
-            <Link href="/parents">For Parents</Link>
-            <Link href="/safety">Safety</Link>
-          </nav>
-        </div>
-
-        <div className={`${s.c2} ${s.r1} ${s.rel}`}>
-          <p className="sm" style={{ fontWeight: 600, textTransform: "uppercase" }}>
-            {eyebrowA}
-          </p>
-          <p className="sm muted" style={{ textTransform: "uppercase" }}>
+          <p className="cap" style={{ fontSize: "clamp(26px, 2.6vw, 40px)", lineHeight: 0.95 }}>
+            <span className="ink">{eyebrowA}</span>
+            <br />
             {eyebrowB}
           </p>
         </div>
@@ -88,25 +77,33 @@ function Hero() {
           </h1>
         </div>
 
-        {hero.trust.map((t, i) => (
-          <div key={t} className={`${[s.c1, s.c2, s.c3][i]} ${s.r3} ${s.rel}`}>
-            <p className="lbl">0{i + 1}</p>
-            <p className="cap" style={{ fontSize: 26 }}>
-              {t}
-            </p>
-          </div>
-        ))}
+      </div>
+    </section>
+  );
+}
 
-        <div className={`${s.c4} ${s.r3} ${s.rel} ${s.wide}`}>
-          <p className="lead">{hero.sub}</p>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 24 }}>
-            <Link href="/workshops#book" className="btn">
-              {common.cta.book} →
-            </Link>
-            <Link href="#how-it-works" className="btn btn-ghost">
-              {common.cta.howItWorks}
-            </Link>
-          </div>
+/** Trust points, sub-line and the booking buttons, just below the alumni bar. */
+function BookStrip() {
+  const { hero } = home;
+  return (
+    <section className={s.book} aria-label={common.cta.book}>
+      {hero.trust.map((t, i) => (
+        <div key={t}>
+          <p className="lbl">0{i + 1}</p>
+          <p className="cap" style={{ fontSize: 26 }}>
+            {t}
+          </p>
+        </div>
+      ))}
+      <div className={s.bookMain}>
+        <p className="lead">{hero.sub}</p>
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 24 }}>
+          <Link href="/workshops#book" className="btn">
+            {common.cta.book} →
+          </Link>
+          <Link href="#how-it-works" className="btn btn-ghost">
+            {common.cta.howItWorks}
+          </Link>
         </div>
       </div>
     </section>

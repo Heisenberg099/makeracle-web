@@ -1,17 +1,40 @@
-/* Home hero — numerals + illustration collage from the renderings. */
+/* Home hero — numerals + illustration collage from the renderings.
+   .screen = hero + alumni bar, exactly one screen tall below the sticky header. */
+.screen {
+  min-height: calc(100svh - 73.5px); /* header: 72px + 1.5px border */
+  display: flex;
+  flex-direction: column;
+}
 .hero {
   position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 28px var(--gutter) 48px;
+  padding: 28px var(--gutter) 32px;
   overflow: hidden;
 }
 .grid {
   position: relative;
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.45fr);
-  grid-template-rows: auto minmax(470px, 1fr) auto;
+  grid-template-rows: auto 1fr;
   column-gap: 28px;
+}
+
+/* Trust points + booking, below the alumni bar; same columns as the hero. */
+.book {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 56px var(--gutter) 8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.45fr);
+  column-gap: 28px;
+  row-gap: 32px;
+  align-items: start;
 }
 .num {
   position: absolute;
@@ -28,15 +51,13 @@
   position: absolute;
   left: 46%;
   top: 70px;
-  width: 360px;
+  /* Shrinks on short screens so it always ends above the alumni bar:
+     screen − header (73.5) − alumni bar (~100) − top offset + gap (~114); art is 1 : 1.525. */
+  width: min(360px, calc((100svh - 287.5px) / 1.525));
   transform: translateX(-50%);
   z-index: 1;
 }
 .illo svg { width: 100%; height: auto; display: block; }
-.nav a {
-  display: block; text-decoration: none; font-stretch: 80%; font-weight: 600;
-  font-size: 15px; line-height: 1.2; text-transform: uppercase;
-}
 .c1 { grid-column: 1; }
 .c2 { grid-column: 2; }
 .c3 { grid-column: 3; }
@@ -58,10 +79,15 @@
   .num { display: none; }
   .illo { position: static; transform: none; margin: 0 auto; width: min(320px, 80vw); grid-column: 1 / -1 !important; }
   .cards { flex-direction: column; gap: 20px; }
+  .screen { min-height: 0; }
+  .grid { grid-template-rows: auto; }
+  .book { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .bookMain { grid-column: 1 / -1; }
   .tcard { transform: none !important; margin: 0 !important; width: 100%; }
 }
 @media (max-width: 560px) {
   .grid { grid-template-columns: 1fr; }
+  .book { grid-template-columns: 1fr; }
 }
 
 /* gentle float for the hero burst */
