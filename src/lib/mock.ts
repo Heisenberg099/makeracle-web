@@ -203,6 +203,7 @@ export const announcements = [
 
 export const studioDemo: StudioProgress = {
   student: { id: "6B-12", firstName: "Riya", name: "Riya S.", classLabel: "Class 6B", school: "Green Valley Public School" },
+  teacher: "Ms. Kapoor",
   today: "Monday · Week 14 of 2026-27",
   hours: { ct: 18, ai: 6, project: 12 },
   ct: { 1: "done", 2: "done", 3: "done", 4: "in-progress", 5: "now", 6: "up-next", 7: "up-next", 8: "up-next", 9: "up-next", 10: "up-next" },
