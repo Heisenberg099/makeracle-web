@@ -83,6 +83,8 @@ export type JourneyStatus = "done" | "in-progress" | "now" | "up-next";
 /** One student's progress through the Class 6 CT & AI journey. */
 export type StudioProgress = {
   student: { id: string; firstName: string; name: string; classLabel: string; school: string };
+  /** The class teacher who approves class-wall posts. */
+  teacher: string;
   /** e.g. "Monday · Week 14 of 2026-27" */
   today: string;
   /** Hours logged against the CBSE requirement (40 CT / 20 AI / 40 projects). */

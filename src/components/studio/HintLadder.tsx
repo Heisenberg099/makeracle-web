@@ -10,15 +10,21 @@ import { useState } from "react";
 export function HintLadder({
   hints,
   initialUsed = 0,
+  used: usedProp,
   onUnlock,
   title = "Hint ladder",
+  note,
 }: {
   hints: string[];
   initialUsed?: number;
+  /** Controlled mode: how many hints are unlocked (e.g. from saved progress). */
+  used?: number;
   onUnlock?: (used: number) => void;
   title?: string;
+  note?: string;
 }) {
-  const [used, setUsed] = useState(Math.min(initialUsed, hints.length));
+  const [own, setUsed] = useState(Math.min(initialUsed, hints.length));
+  const used = Math.min(usedProp ?? own, hints.length);
   const allUsed = used >= hints.length;
 
   return (
@@ -61,6 +67,11 @@ export function HintLadder({
       >
         {allUsed ? "All hints used · explain your rule next" : "Unlock next hint"}
       </button>
+      {note && (
+        <p className="sm muted" style={{ marginTop: 10 }}>
+          {note}
+        </p>
+      )}
     </section>
   );
 }
