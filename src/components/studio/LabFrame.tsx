@@ -10,8 +10,11 @@ export function LabFrame({
   red,
   intro,
   kicker,
+  back,
   children,
 }: {
+  /** Where the back link goes (defaults to the student's journey). */
+  back?: { href: string; label: string };
   /** Small line above the title (e.g. chapter and ethics tag). */
   kicker?: string;
   dark?: boolean;
@@ -26,7 +29,7 @@ export function LabFrame({
   return (
     <div className={`studio-page${dark ? " dark" : ""}`}>
       <main id="main" className="wrap" style={{ paddingBottom: 80 }}>
-        <StudioTopBar>
+        <StudioTopBar backHref={back?.href} backLabel={back?.label}>
           {right ?? (
             <p style={{ display: "flex", flexWrap: "wrap", gap: 6, margin: 0 }}>
               {chips.map((c) => (

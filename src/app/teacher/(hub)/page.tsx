@@ -1,110 +1,89 @@
 import Link from "next/link";
-import { announcements, classes, demoTeacher, getLesson, requirement68 } from "@/lib/mock";
+import { ProgressBar } from "@/components/studio/ProgressBar";
+import { QuickCapture, ReviewQueue, StrandsTable } from "@/components/teacher6/HubParts";
+import { curriculum } from "@/content/class6";
+import { class6Students, hubDemo, studioDemo } from "@/lib/mock";
 
-export const metadata = { title: "My classes" };
+export const metadata = { title: "Today" };
 
-export default function TeacherHome() {
+export default function TeacherToday() {
+  const t = curriculum.timeAllocation;
   return (
     <>
-      <p className="lbl">Good morning, {demoTeacher.name.split(" ").slice(-1)[0]}</p>
-      <h1 className="cap h-m">
-        Your classes
-        <br />
-        this week.
-      </h1>
-
-      <div className="grid g3" style={{ marginTop: 32 }}>
-        {classes.map((c) => {
-          const next = getLesson(c.lessonId);
-          const total = c.hours.ct + c.hours.ai + c.hours.project;
-          const req = requirement68.ct + requirement68.ai + requirement68.project;
-          return (
-            <article key={c.id} className="card stack" style={{ gap: 14 }}>
-              <div className="row-between" style={{ alignItems: "baseline", gap: 8 }}>
-                <h2 className="ttl" style={{ fontSize: 30 }}>
-                  {c.label}
-                </h2>
-                <span className="sm muted">{c.slot}</span>
-              </div>
-              <p className="sm">
-                Module: <strong>{c.module}</strong>
-              </p>
-              <div>
-                <div className="row-between sm" style={{ gap: 8 }}>
-                  <span>CBSE hours delivered</span>
-                  <strong>
-                    {total} / {req}
-                  </strong>
-                </div>
-                <div className="progress" style={{ marginTop: 6 }} role="img" aria-label={`${total} of ${req} hours delivered`}>
-                  <span style={{ width: `${Math.min(100, (total / req) * 100)}%` }} />
-                </div>
-                <p className="sm muted" style={{ marginTop: 6 }}>
-                  CT {c.hours.ct}/{requirement68.ct} · AI {c.hours.ai}/{requirement68.ai} · Projects {c.hours.project}/{requirement68.project}
-                </p>
-              </div>
-              {next && (
-                <div style={{ background: "var(--ground)", borderRadius: 6, padding: 16 }}>
-                  <p className="lbl" style={{ margin: "0 0 4px" }}>
-                    Next lesson · {next.minutes} min{next.unplugged ? " · unplugged" : ""}
-                  </p>
-                  <p className="ttl" style={{ fontSize: 20 }}>
-                    {next.title}
-                  </p>
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 12 }}>
-                    <Link href={`/teacher/present/${next.id}`} className="btn">
-                      Start projector mode
-                    </Link>
-                    <Link href={`/teacher/lessons/${next.id}`} className="btn btn-ghost">
-                      Read script
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </article>
-          );
-        })}
+      <div className="row-between" style={{ alignItems: "flex-start", gap: 24 }}>
+        <div>
+          <p className="sm muted">{hubDemo.today}</p>
+          <h1 className="studio-hello" style={{ marginTop: 8 }}>
+            Today in
+            <br />
+            <span className="hi">Class 6.</span>
+          </h1>
+        </div>
+        <div className="s-card-yellow tilt-r" style={{ maxWidth: 320 }}>
+          <p className="sm">In sync with your maths textbook</p>
+          <p className="sm" style={{ fontWeight: 700, marginTop: 4 }}>
+            {hubDemo.sync.text}
+          </p>
+        </div>
       </div>
 
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 20, marginTop: 20 }}>
-        <section className="card-ink" style={{ flex: "1 1 320px" }} aria-labelledby="cert-h">
-          <p className="lbl" id="cert-h">
-            Your certification
-          </p>
-          <p className="cap" style={{ fontSize: 40 }}>
-            {demoTeacher.certification}
-          </p>
-          <div className="progress" style={{ marginTop: 16, background: "#333" }} role="img" aria-label={`${demoTeacher.trainingDone} of ${demoTeacher.trainingTotal} modules`}>
-            <span style={{ width: `${(demoTeacher.trainingDone / demoTeacher.trainingTotal) * 100}%` }} />
-          </div>
-          <p className="sm" style={{ marginTop: 8, color: "#d6d6d6" }}>
-            {demoTeacher.trainingDone} of {demoTeacher.trainingTotal} training modules · next level: Builder
-          </p>
-          <Link href="/teacher/training" className="btn btn-ghost" style={{ marginTop: 18 }}>
-            Continue training
-          </Link>
-        </section>
-        <section className="card" style={{ flex: "2 1 420px" }} aria-labelledby="ann-h">
-          <p className="lbl" id="ann-h">
-            Announcements
-          </p>
-          {announcements.map((a) => (
-            <div key={a.text} style={{ display: "flex", gap: 16, padding: "12px 0", borderTop: "1px solid var(--line)" }}>
-              <span className="sm muted" style={{ flex: "0 0 56px" }}>
-                {a.date}
+      <div className="grid g2" style={{ gap: 14, marginTop: 24 }}>
+        {hubDemo.sections.map((s) => (
+          <section key={s.id} className="s-card" aria-labelledby={`cls-${s.id}`}>
+            <div className="row-between" style={{ alignItems: "center" }}>
+              <h2 id={`cls-${s.id}`} className="s-title" style={{ fontSize: 32 }}>
+                Class {s.id}
+              </h2>
+              <span className="sm muted">
+                {s.period} · {s.students} students
               </span>
-              <p className="body">{a.text}</p>
             </div>
-          ))}
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 12 }}>
-            <Link href="/teacher/review" className="btn">
-              Review student work
-            </Link>
-            <Link href="/teacher/marking" className="btn btn-ghost">
-              Mark a class
-            </Link>
-          </div>
-        </section>
+            <p className="sm muted" style={{ marginTop: 4 }}>
+              CBSE hours delivered · {s.hours.ct + s.hours.ai + s.hours.project} / {t.totalHours}
+            </p>
+            {(
+              [
+                ["Advanced CT", s.hours.ct, t.ctHours, "red"],
+                ["Introductory AI", s.hours.ai, t.aiHours, "ink"],
+                ["Interdisciplinary projects", s.hours.project, t.projectHours, "muted"],
+              ] as const
+            ).map(([l, v, max, tone]) => (
+              <div key={l} style={{ marginTop: 10 }}>
+                <p className="sm" style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                  <span>{l}</span>
+                  <strong>
+                    {v} / {max} h
+                  </strong>
+                </p>
+                <ProgressBar value={v} max={max} label={`Class ${s.id} ${l}`} tone={tone} />
+              </div>
+            ))}
+            <div style={{ background: "var(--ground)", borderRadius: 6, padding: 14, marginTop: 14 }}>
+              <p className="sm muted">
+                Next · {s.next.minutes} min · {s.next.mode}
+              </p>
+              <p className="s-title" style={{ fontSize: 22 }}>
+                {s.next.title}
+              </p>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 }}>
+                <Link href={`/teacher/present/${s.next.item === "ct5-act" ? "ct5-q1" : s.next.item}`} className="btn btn-red">
+                  Start projector mode
+                </Link>
+                <Link href={`/teacher/planner?ch=ct${s.next.chapter}`} className="btn btn-ghost">
+                  Read facilitation guide
+                </Link>
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div className="hub-grid" style={{ marginTop: 16 }}>
+        <StrandsTable students={class6Students} />
+        <div className="stack" style={{ gap: 14 }}>
+          <QuickCapture students={class6Students} />
+          <ReviewQueue student={studioDemo.student.name} />
+        </div>
       </div>
     </>
   );

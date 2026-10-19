@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Visual } from "./Visual";
-import { submitPost, toggleTried, useStudio } from "@/lib/class6/store";
+import { submitPost, toggleTried, useStudio, useValue } from "@/lib/class6/store";
 import type { WallPost } from "@/lib/types";
 
 const KINDS = ["Pattern", "Riddle", "Challenge", "Mirror art", "String art", "Chart", "Magic box", "Something else"];
@@ -14,6 +14,8 @@ const KINDS = ["Pattern", "Riddle", "Challenge", "Mirror art", "String art", "Ch
  */
 export function WallBoard({ demo, me, teacher }: { demo: WallPost[]; me: string; teacher: string }) {
   const { posts, tried = [] } = useStudio();
+  // A parent can switch off showing their child's work on the wall.
+  const [consent] = useValue("parent-consent", { wall: true, portfolio: true, photos: false });
   const [filter, setFilter] = useState<"all" | "ct" | "ai">("all");
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
@@ -26,7 +28,7 @@ export function WallBoard({ demo, me, teacher }: { demo: WallPost[]; me: string;
   const mine: WallPost[] = posts
     .filter((p) => p.status === "approved")
     .map((p) => ({ id: p.id, author: me, part: p.from.startsWith("AI") ? "ai" : "ct", tag: p.from.split(" · ")[0], kind: p.kind, visual: { text: p.kind, tone: "white" }, title: p.title, body: p.body, status: "approved", tried: 0, postedAt: p.at }));
-  const all = [...mine, ...demo].filter((p) => filter === "all" || p.part === filter);
+  const all = [...(consent.wall ? mine : []), ...demo].filter((p) => filter === "all" || p.part === filter);
   const pending = posts.filter((p) => p.status !== "approved");
 
   return (
@@ -103,6 +105,12 @@ export function WallBoard({ demo, me, teacher }: { demo: WallPost[]; me: string;
             </span>
           </div>
         </form>
+      )}
+
+      {!consent.wall && (
+        <p className="s-card-grey sm" style={{ marginBottom: 16 }} role="note">
+          Your parent has chosen not to show your work on the class wall, so your approved posts are hidden from your class.
+        </p>
       )}
 
       {pending.length > 0 && (
