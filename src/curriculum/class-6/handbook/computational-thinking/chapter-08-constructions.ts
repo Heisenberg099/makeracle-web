@@ -1,0 +1,285 @@
+import type { CTChapter } from "@/curriculum/class-6/handbook/types";
+import { figureOptions, textOptions } from "./_option-helpers";
+
+/** CT Chapter 8 — Playing with Constructions. SH pp. 36–39, TH pp. 72–81. */
+export const ch08: CTChapter = {
+  number: 8,
+  slug: "playing-with-constructions",
+  title: "Playing with Constructions",
+  page: { sh: [36, 39], th: [72, 81] },
+  questions: [
+    {
+      id: "ct8-q1",
+      chapter: 8,
+      number: 1,
+      prompt: "An image made of squares is cut diagonally into two halves, and one half is shown below. Which option should be joined with the question image so that the resulting image forms exactly 4 squares?",
+      details: ["Note: You cannot rotate any of the images"],
+      figure: {
+        id: "ct8-q1-fig",
+        page: { sh: 36, th: 72 },
+        alt: "The lower-right half of a square cut along a dotted diagonal: one vertical line on the right joined by four horizontal lines.",
+      },
+      options: figureOptions("ct8-q1", { sh: 36, th: 72 }, [
+        "Upper-left half with five horizontal lines",
+        "Upper-left half with three vertical lines",
+        "Upper-left half with four vertical lines",
+        "Upper-left half with nested corner lines",
+      ]),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "To form a square we need four equal sides. The question image has four horizontal lines and one vertical line connecting them, giving two sides for each of four squares. We need to add the remaining sides.",
+          "Option a: three horizontal lines that do not connect to form any squares. Incorrect.",
+          "Option b: forms three squares instead of four. Incorrect.",
+          "Option c: forms four squares when combined with the question image. Correct.",
+          "Option d: does not form any squares. Incorrect. Thus, the correct answer is option c.",
+        ],
+      },
+      page: { sh: 36, th: 72 },
+    },
+    {
+      id: "ct8-q2",
+      chapter: 8,
+      number: 2,
+      prompt: "Given below is an arrangement of squares. What is the minimum number of straight lines required so that the total number of square shapes that appear in the final image (including the existing ones) is more than 5?",
+      figure: {
+        id: "ct8-q2-fig",
+        page: { sh: 36, th: 73 },
+        alt: "A large square divided into a 2 × 2 grid of four smaller squares.",
+      },
+      options: textOptions("2", "3", "4", "5"),
+      answer: ["a"],
+      solution: {
+        steps: [
+          "The given figure has 5 squares (4 small ones and the large outer one).",
+          "We need at least 6 squares. Adding only one line will not give a new square.",
+          "Adding two lines inside one small square (one horizontal, one vertical) creates a new square.",
+          "Thus, at minimum, we must add two lines. Option a is the correct answer.",
+        ],
+      },
+      page: { sh: 36, th: 73 },
+    },
+    {
+      id: "ct8-q3",
+      chapter: 8,
+      number: 3,
+      prompt: "The following arrangement is made up of matchsticks of the same dimensions. How many additional matchsticks are needed to divide the area between the outlines of the larger outer square and the smaller inner square into three parts, each having the same area as the smaller inner square?",
+      figure: {
+        id: "ct8-q3-fig",
+        page: { sh: 36, th: 73 },
+        alt: "A large square made of matchsticks (4 per side) with a smaller square (2 per side) inside it, nearer the top.",
+      },
+      options: textOptions("4", "3", "2", "5"),
+      answer: ["b"],
+      solution: {
+        steps: [
+          "Let the length of each matchstick be 1 unit, so the area of each smallest square is 1 unit.",
+          "Using 3 matchsticks, the region between the squares splits into three parts.",
+          "Area of Part 1: (3 × 1) + (1 × 1) = 4 units. Part 2: (3 × 1) + (1 × 1) = 4 units. Part 3: 4 × 1 = 4 units.",
+          "Hence, the correct answer is option b.",
+        ],
+      },
+      page: { sh: 36, th: [73, 74] },
+    },
+    {
+      id: "ct8-q4",
+      chapter: 8,
+      number: 4,
+      prompt: "Form a 3 × 3 square using exactly 3 shapes from the set given below. Which shape will NOT be used?",
+      details: ["Note: You cannot rotate or overlap the shapes"],
+      figure: {
+        id: "ct8-q4-fig",
+        page: { sh: 37, th: 74 },
+        alt: "Set A of four block shapes: 1, two cells stacked vertically; 2, an L of three cells (two stacked plus one to the right of the top); 3, a step shape of four cells; 4, a staircase of six cells rising to the right.",
+      },
+      options: figureOptions("ct8-q4", { sh: 37, th: 74 }, [
+        "Two cells stacked vertically (shape 1)",
+        "Staircase of six cells (shape 4)",
+        "Step shape of four cells (shape 3)",
+        "L of three cells (shape 2)",
+      ]),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "First look for the shape with the most blocks, where the others can fit to form a 3 × 3 square. Number the shapes in Set A as 1 to 4.",
+          "Selecting shape 4 gives three columns. To complete column 3 we need two blocks, so we take shape 1.",
+          "Placing shape 2 in the result completes a 3 × 3 square. Shape 3 is not used.",
+          "Check whether shape 3 could be used: combined with shape 4, both stepped shapes make the arrangement taller than 3 rows. With any other shapes, the layout crosses the 3-row limit or leaves gaps that the third shape cannot fill.",
+          "So shape 3 can never be used. Option c is the right answer.",
+        ],
+      },
+      page: { sh: 37, th: [74, 75] },
+    },
+    {
+      id: "ct8-q5",
+      chapter: 8,
+      number: 5,
+      prompt: "Six pieces are given. Using all of them, form two separate 3 × 3 square grids, each containing both letters and shapes. In both completed grids, which shape will be adjacent to a letter?",
+      details: [
+        "Note: Two cells are considered adjacent only if they share a common side. Cells that share a common corner alone are not adjacent. Rotation of the pieces is not allowed",
+      ],
+      figure: {
+        id: "ct8-q5-fig",
+        page: { sh: 37, th: 75 },
+        alt: "Six pieces: (1) red triangle and blue pentagon above a green circle; (2) a red triangle above the right end of a row: red triangle, blue pentagon, green circle; (3) P E; (4) green circle above blue pentagon; (5) D above the right end of a row: H C K; (6) F S G.",
+      },
+      options: textOptions("Red Triangle", "Green Circle", "Blue Pentagon", "Both options b and c"),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "Each square grid must have some letters and some shapes. Only one arrangement satisfies this.",
+          "Grid A: F S G / P E red-triangle / red-triangle blue-pentagon green-circle. Grid B: green-circle red-triangle blue-pentagon / blue-pentagon green-circle D / H C K.",
+          "In Grid A, the red triangles and the blue pentagon are adjacent to letter cells. In Grid B, the blue pentagons and the green circle are adjacent to letter cells.",
+          "So the blue pentagon is adjacent to a letter in both grids. Option c is the correct answer.",
+        ],
+      },
+      page: { sh: 37, th: 75 },
+    },
+    {
+      id: "ct8-q6",
+      chapter: 8,
+      number: 6,
+      prompt: "Which of these options, when combined with the question image, will form a rectangle or a square?",
+      details: ["Note: The images cannot overlap each other"],
+      figure: {
+        id: "ct8-q6-fig",
+        page: { sh: 37, th: 76 },
+        alt: "Question image: a shape with a straight right side and a zig-zag left side made of two outward points and one inward notch.",
+      },
+      options: figureOptions("ct8-q6", { sh: 37, th: 76 }, [
+        "Shape with a straight left side and a zig-zag right edge: two inward notches with a sharp outward point between",
+        "Shape whose right edge has two outward points and one inward notch",
+        "Shape with a zig-zag right edge but straight lines at its top-right and bottom-right corners",
+        "Shape whose right edge has a blunt (not sharp) outward point in the middle",
+      ]),
+      answer: ["a"],
+      solution: {
+        steps: [
+          "Look for visual cues. The question image has two edges pointing outwards and one pointing inwards, so we need a shape with two edges pointing inwards and one sharp edge in the middle pointing outwards.",
+          "Option b has two edges pointing outwards and one inwards, so it will not complete the image.",
+          "Option c has the right pattern, but the straight lines at its top-right and bottom-right corners do not fit the question image.",
+          "Option d’s middle outward edge does not have a sharp tip, which would leave an empty space.",
+          "Only option a combines with the question image to form a square. Hence, the correct answer is option a.",
+        ],
+      },
+      page: { sh: 37, th: [76, 77] },
+    },
+    {
+      id: "ct8-q7",
+      chapter: 8,
+      number: 7,
+      prompt: "When Figure A is placed over Figure B to form a square grid, which same digits will be positioned exactly on top of each other?",
+      figure: {
+        id: "ct8-q7-fig",
+        page: { sh: 37, th: 77 },
+        alt: "Figure A: a 2-row block with cells 1, 4, empty on top and 2, empty, 3 below. Figure B: a 2-row block with cells empty, 2, 3 on top and empty, 4, 1 below.",
+      },
+      options: textOptions("1", "2", "3", "4"),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "Option a: overlapping the blocks with 1 forms an irregular shape, not a square.",
+          "Option b: overlapping the blocks with 2 forms an irregular shape.",
+          "Option c: overlapping the blocks with 3 forms a square.",
+          "Option d: overlapping the blocks with 4 forms an irregular shape.",
+          "Since a square is formed only when the blocks with 3 overlap, the correct answer is option c.",
+        ],
+      },
+      page: { sh: 37, th: 77 },
+    },
+    {
+      id: "ct8-q8",
+      chapter: 8,
+      number: 8,
+      prompt: "Four pieces together form a square. Only three of these pieces are shown. Which option represents the fourth piece that, when joined with the given three pieces, will complete the square?",
+      details: ["Note: The pieces must not overlap each other and rotation is not allowed"],
+      figure: {
+        id: "ct8-q8-fig",
+        page: { sh: 38, th: 78 },
+        alt: "Three pieces: a red L of four cells (one cell above the left end of a row of three); a blue J of four cells (three stacked with one to the bottom-left); a yellow bar of four cells stacked vertically.",
+      },
+      options: figureOptions("ct8-q8", { sh: 38, th: 78 }, [
+        "Green piece: three cells stacked with one cell to the top-right",
+        "Green piece: a 2 × 2 square",
+        "Green piece: a row of three cells with one cell below the left end",
+        "Green piece: an S shape of four cells",
+      ]),
+      answer: ["b"],
+      solution: {
+        steps: [
+          "A square has equal height and width. The yellow piece already has 4 blocks in one column; if the red piece were in the same column it would be taller than its width. So the square is 4 × 4.",
+          "Six arrangements of the yellow and red pieces are possible.",
+          "In only two arrangements can the blue piece be placed.",
+          "In both, the space remaining for the green piece is a 2 × 2 square, which is option b.",
+          "Hence, the correct answer is option b.",
+        ],
+      },
+      page: { sh: 38, th: 78 },
+    },
+    {
+      id: "ct8-q9",
+      chapter: 8,
+      number: 9,
+      prompt: "Two identical paper sheets are joined together at one of their sides to form a square. Which of the following CAN DEFINITELY NOT be the shape of each of the paper sheets?",
+      options: textOptions("Triangle", "Square", "Rectangle", "None of these"),
+      answer: ["b"],
+      solution: {
+        steps: [
+          "Option a: joining two triangles can give a square.",
+          "Option b: joining two squares at any side always gives a rectangle, so a square can never be formed.",
+          "Option c: joining two rectangles can give a square.",
+          "Since joining two squares can never result in a square, the sheets can definitely not be squares. Option b is the correct answer.",
+        ],
+      },
+      page: { sh: 38, th: 79 },
+    },
+    {
+      id: "ct8-q10",
+      chapter: 8,
+      number: 10,
+      prompt: "A 5 × 5 grid is formed using three different pattern blocks, as shown in the image. Some blocks are missing from the grid. No two adjacent blocks in the grid can have the same pattern. Complete the grid and tell which pattern block is PRESENT the MOST.",
+      details: [
+        "Note: Blocks that share common sides are considered to be adjacent. Blocks that share a common corner alone, are NOT adjacent",
+      ],
+      figure: {
+        id: "ct8-q10-fig",
+        page: { sh: 38, th: 79 },
+        alt: "A 5 × 5 grid partly filled with three patterns: Pattern 1 (solid grey), Pattern 2 (star) and Pattern 3 (diagonal hatching), with the remaining cells empty.",
+      },
+      options: textOptions("Pattern 3", "Pattern 2", "Pattern 1", "Both options b and c"),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "Complete the grid so that no two adjacent blocks have the same pattern.",
+          "Cells whose neighbours already contain patterns 2 and 3 can only hold pattern 1, so place pattern 1 there.",
+          "Cells whose neighbours contain patterns 1 and 3 must hold pattern 2; cells whose neighbours contain 1 and 2 must hold pattern 3. Repeat until the grid is full.",
+          "Count: pattern 1 appears 9 times; patterns 2 and 3 appear 8 times each.",
+          "Pattern 1 is present the most. Hence, option c is the correct answer.",
+        ],
+      },
+      page: { sh: 38, th: [79, 80] },
+    },
+  ],
+  thinkingSpot: {
+    id: "ct8-ts",
+    chapter: 8,
+    prompt: "Place numbers inside every cell so that each cell indicates how many different numbers its arrow(s) point to. What will come in place of A and B?",
+    figure: {
+      id: "ct8-ts-fig",
+      page: { sh: 39, th: 81 },
+      alt: "A 4 × 4 grid of cells with arrows. Row 1: A (arrow down), D (arrow left), 2 (arrow left), 2 (arrow left). Row 2: B (arrow right), C (arrow right), 2 (arrow down), 1 (arrow up). Row 3: 1 (arrow down), 2 (arrow up), 1 (arrow down), 1 (arrow down). Row 4: 2 (arrow right), 1 (arrow left), 2 (arrow left), 2 (arrow left).",
+    },
+    options: textOptions("A = 1, B = 2", "A = 2, B = 1", "A = 2, B = 2", "A = 3, B = 2"),
+    answer: ["c"],
+    solution: {
+      steps: [
+        "Follow the arrows to work out each cell.",
+        "C’s arrow points to the numbers 1 and 2, so C must be 2.",
+        "B’s arrow points to the numbers 1 and 2, so B must also be 2.",
+        "Since B = 2, A’s arrow also points to the numbers 1 and 2, so A must be 2.",
+        "A = 2 and B = 2. Thus, option c is the correct answer.",
+      ],
+    },
+    page: { sh: 39, th: 81 },
+  },
+};
