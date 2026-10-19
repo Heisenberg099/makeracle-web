@@ -18,6 +18,7 @@
   --yellow: #ffd43b;       /* Studio highlight cards, class-wall notes (ink text: 13:1) */
   --green: #1d7a3a;        /* "correct" / satisfied states (white text: 5.6:1) */
   --ink-2: #2a2a2a;        /* raised panels on --ink */
+  --pink: #f4a3ac;         /* class-wall visual tile (ink text: 9:1) */
 
   --font-sans: "Archivo", system-ui, sans-serif;
   --font-brand: "Figtree", system-ui, sans-serif;
