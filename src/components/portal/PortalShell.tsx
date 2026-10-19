@@ -11,18 +11,21 @@ export function PortalShell({
   area,
   user,
   nav,
+  footer,
   children,
 }: {
   area: string;
   user: string;
   nav: NavItem[];
+  /** Replaces the default help line at the bottom of the sidebar. */
+  footer?: React.ReactNode;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
   return (
     <div className="portal">
       <aside className="portal-side">
-        <Link href="/" aria-label="Makeracle home" style={{ textDecoration: "none" }}>
+        <Link href="/" aria-label="Makeracle home" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", minHeight: 44 }}>
           <Logo tone="dark" size={30} />
         </Link>
         <div>
@@ -43,9 +46,13 @@ export function PortalShell({
             );
           })}
         </nav>
-        <p className="sm" style={{ marginTop: "auto", color: "var(--muted-on-ink)" }}>
-          Help: WhatsApp support · weekly office hours
-        </p>
+        <div style={{ marginTop: "auto" }}>
+          {footer ?? (
+            <p className="sm" style={{ color: "var(--muted-on-ink)" }}>
+              Help: WhatsApp support · weekly office hours
+            </p>
+          )}
+        </div>
       </aside>
       <main id="main" className="portal-main">
         <p className="demo-bar" role="note">
