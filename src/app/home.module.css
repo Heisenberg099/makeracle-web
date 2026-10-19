@@ -89,9 +89,3 @@
   .grid { grid-template-columns: 1fr; }
   .book { grid-template-columns: 1fr; }
 }
-
-/* gentle float for the hero burst */
-:global(.burst-float) { animation: float 6s ease-in-out infinite; transform-box: fill-box; }
-:global(.burst-d2) { animation-delay: -2s; }
-:global(.burst-d3) { animation-delay: -4s; }
-@keyframes float { 50% { translate: 0 -6px; } }
