@@ -1,12 +1,21 @@
-# Makeracle — website (Phase 1)
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/makeracle-logo-dark.png">
+    <img src=".github/assets/makeracle-logo-light.png" alt="makeracle" width="380">
+  </picture>
+</p>
 
-The public website for **Makeracle**, an AI & build-learning programme for Indian schools.
-Its first job is to get a principal to **book a free 90-minute workshop**.
+<p align="center"><strong>From curiosity to creation.</strong><br>AI, web &amp; app projects for CBSE schools</p>
 
-> From curiosity to creation.
+# makeracle-web
 
-Phase 1 is the public site only. Logged-in tools (Teacher hub, student Studio, portfolios, parent consent)
-come in Phase 2 — early work for those lives on the [`phase-2-wip`](../../tree/phase-2-wip) branch.
+The **Makeracle** website and the **Class 6 CT &amp; AI learning platform** for Indian schools:
+
+- **Website:** gets a principal to **book a free 90-minute workshop**.
+- **Platform:** Student Studio, Teacher Hub, parent view and school dashboard for the CBSE Class 6
+  Computational Thinking &amp; AI curriculum. It runs on demo data until the backend launches.
+
+New here? Start with **[docs/PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md)**.
 
 ## What's in here
 
