@@ -167,7 +167,12 @@ function Journal({ slug, stage, prompt }: { slug: string; stage: string; prompt:
   );
 }
 
-export function ProjectWorkspace({ project, progress, tally, next }: { project: ProjectDef; progress: ProjectProgress; tally: Record<string, number>; next: { slug: string; title: string; line: string; when: string; uses: string } | null }) {
+/** Marks the teacher saved in the Observation Journal (same store), overriding the demo marks. */
+export type SavedMarks = { marks: Record<string, number>; note: string; parentOk: boolean; at: string } | null;
+
+export function ProjectWorkspace({ project, progress: base, tally, next }: { project: ProjectDef; progress: ProjectProgress; tally: Record<string, number>; next: { slug: string; title: string; line: string; when: string; uses: string } | null }) {
+  const [saved] = useValue<SavedMarks>(`marks-${project.slug}`, null);
+  const progress: ProjectProgress = saved ? { ...base, marks: saved.marks as ProjectProgress["marks"], teacherNote: saved.note } : base;
   const firstWorking = project.stages.find((s) => progress.stageStatus[s.id] === "working") ?? project.stages[0];
   const [sel, setSel] = useState(firstWorking.id);
   const [extra, setExtra] = useValue(`${project.slug}-hours`, 0);

@@ -19,6 +19,8 @@
   --green: #1d7a3a;        /* "correct" / satisfied states (white text: 5.6:1) */
   --ink-2: #2a2a2a;        /* raised panels on --ink */
   --pink: #f4a3ac;         /* class-wall visual tile (ink text: 9:1) */
+  --red-tint-1: #f7d6da;   /* CT strand level 1 (ink text) */
+  --red-tint-2: #f0a3ab;   /* CT strand level 2 (ink text) */
 
   --font-sans: "Archivo", system-ui, sans-serif;
   --font-brand: "Figtree", system-ui, sans-serif;
@@ -435,3 +437,12 @@ fieldset.fld { border: 0; margin: 0; padding: 0; }
 @media (max-width: 760px) { .eq-grid { grid-template-columns: 1fr !important; text-align: center; } }
 .lab-grid-inbox { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); }
 @media (max-width: 960px) { .lab-grid-inbox { grid-template-columns: 1fr; } }
+
+.hub-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 1100px) { .hub-grid { grid-template-columns: 1fr; } }
+.planner-grid { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 16px; align-items: start; }
+.planner-top { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 12px; align-items: start; }
+@media (max-width: 1000px) { .planner-grid, .planner-top { grid-template-columns: 1fr; } }
+@media print { .print-me { display: block !important; } }
+.journal-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr) 260px; gap: 16px; align-items: start; }
+@media (max-width: 1100px) { .journal-grid { grid-template-columns: 1fr; } }

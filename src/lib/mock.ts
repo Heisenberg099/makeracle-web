@@ -3,7 +3,7 @@
  * Everything here is fictional. The backend team will replace these exports
  * with API calls of the same shape (see src/lib/types.ts and docs/ARCHITECTURE.md).
  */
-import type { ClassSection, Lesson, Portfolio, PortfolioItem, ProjectProgress, StudioProgress, Student, Submission, WallPost } from "./types";
+import type { Class6Section, Class6Student, ClassSection, Lesson, Observation, Portfolio, PortfolioItem, ProjectProgress, SchoolSection, StudioProgress, Student, Submission, WallPost } from "./types";
 
 export const demoSchool = { id: "sch_demo", name: "Demo Public School", city: "Greater Noida", board: "CBSE" };
 
@@ -234,11 +234,11 @@ export const wallDemo: WallPost[] = [
   { id: "w2", author: "Riya S.", part: "ct", tag: "CT 5", kind: "String art", visual: { text: "12/5", tone: "red" }, title: "12-point star", body: "Added 5 each time and got a star in 12 steps.", status: "approved", tried: 14, postedAt: "2026-10-13" },
   // The render showed 10901 here, which is the answer to handbook CT 3 Q8; changed so the wall can't give it away.
   { id: "w3", author: "Kabir M.", part: "ct", tag: "CT 3", kind: "Riddle", visual: { text: "1 2 3 2 1", tone: "yellow" }, title: "I am a palindrome…", body: "Five digits, I read the same both ways, and my digits add up to 9. What am I?", status: "approved", tried: 9, postedAt: "2026-10-13" },
-  { id: "w4", author: "Meher J.", part: "ct", tag: "CT 9", kind: "Mirror art", visual: { text: "◆ | ◆", tone: "white" }, title: "Diwali rangoli half", body: "Drew one half, the mirror did the rest. Two lines of symmetry!", status: "approved", tried: 17, postedAt: "2026-10-14" },
-  { id: "w5", author: "Ishaan G.", part: "ct", tag: "CT 10", kind: "Magic box", visual: { text: "IN → ? → OUT", tone: "ink" }, title: "The flip-flop box", body: "Two rules and a twist. Guess my rules from 5 inputs.", status: "approved", tried: 6, postedAt: "2026-10-15" },
-  { id: "w6", author: "Sana B.", part: "ct", tag: "CT 6", kind: "Garden plan", visual: { text: "4 × 4", tone: "green" }, title: "16 m fence, 16 m² garden", body: "Square wins. My L-shape only fit 12 m².", status: "approved", tried: 11, postedAt: "2026-10-15" },
-  { id: "w7", author: "Diya P.", part: "ai", tag: "AI 2", kind: "Pictogram", visual: { text: "▮▮▮▮▮", tone: "grey" }, title: "Our bus vs walkers", body: "One icon = 2 students. Walkers win this week.", status: "approved", tried: 8, postedAt: "2026-10-16" },
-  { id: "w8", author: "Arnav K.", part: "ct", tag: "CT 2", kind: "Paper clock", visual: { text: "90°", tone: "pink" }, title: "Clock with angles", body: "Every 5 minutes is 30°. At 3:00 it’s 90°.", status: "approved", tried: 12, postedAt: "2026-10-17" },
+  { id: "w4", author: "Meher K.", part: "ct", tag: "CT 9", kind: "Mirror art", visual: { text: "◆ | ◆", tone: "white" }, title: "Diwali rangoli half", body: "Drew one half, the mirror did the rest. Two lines of symmetry!", status: "approved", tried: 17, postedAt: "2026-10-14" },
+  { id: "w5", author: "Ishaan T.", part: "ct", tag: "CT 10", kind: "Magic box", visual: { text: "IN → ? → OUT", tone: "ink" }, title: "The flip-flop box", body: "Two rules and a twist. Guess my rules from 5 inputs.", status: "approved", tried: 6, postedAt: "2026-10-15" },
+  { id: "w6", author: "Sana V.", part: "ct", tag: "CT 6", kind: "Garden plan", visual: { text: "4 × 4", tone: "green" }, title: "16 m fence, 16 m² garden", body: "Square wins. My L-shape only fit 12 m².", status: "approved", tried: 11, postedAt: "2026-10-15" },
+  { id: "w7", author: "Diya R.", part: "ai", tag: "AI 2", kind: "Pictogram", visual: { text: "▮▮▮▮▮", tone: "grey" }, title: "Our bus vs walkers", body: "One icon = 2 students. Walkers win this week.", status: "approved", tried: 8, postedAt: "2026-10-16" },
+  { id: "w8", author: "Arnav G.", part: "ct", tag: "CT 2", kind: "Paper clock", visual: { text: "90°", tone: "pink" }, title: "Clock with angles", body: "Every 5 minutes is 30°. At 3:00 it’s 90°.", status: "approved", tried: 12, postedAt: "2026-10-17" },
 ];
 
 /* Portfolio · DEMO items for Riya S. */
@@ -265,7 +265,7 @@ export const projectsDemo: Record<string, ProjectProgress> = {
     members: [
       { name: "Riya S.", role: "keeper" },
       { name: "Aarav P.", role: "leader" },
-      { name: "Meher J.", role: "designer" },
+      { name: "Meher K.", role: "designer" },
       { name: "Kabir M.", role: "speaker" },
     ],
     hoursLogged: 12,
@@ -279,7 +279,7 @@ export const projectsDemo: Record<string, ProjectProgress> = {
     members: [
       { name: "Riya S.", role: "privacy" },
       { name: "Aarav P.", role: "phishing" },
-      { name: "Meher J.", role: "password" },
+      { name: "Meher K.", role: "password" },
       { name: "Kabir M.", role: "footprint" },
     ],
     hoursLogged: 0,
@@ -291,3 +291,96 @@ export const projectsDemo: Record<string, ProjectProgress> = {
 
 /** DEMO tally for the Collect stage (render numbers). */
 export const tallyDemo: Record<string, number> = { Walk: 11, Cycle: 4, "School bus": 7, Car: 6, Auto: 3 };
+
+/* ------------------------------------------------------------------ */
+/* Class 6 Teacher Hub · DEMO DATA (render numbers). All sample data.  */
+/* ------------------------------------------------------------------ */
+export const hubDemo = {
+  teacher: { name: "Ms. Kapoor", subject: "Maths + CT" },
+  today: "Monday · Period 3 and Period 6",
+  sync: { chapter: 5, text: "You are on Ganita Prakash Ch 5 · Prime Time. The CT companion is ready: Activity Time (Circle of 12), 10 thinking questions and The Thinking Spot." },
+  training: { code: "TRG-02 2026-27", subTheme: "Sub-theme 3 “Mathematics as the cornerstone”", done: 2, total: 7 },
+  sections: [
+    { id: "6A", period: "Period 3", students: 38, hours: { ct: 20, ai: 6, project: 12 }, next: { minutes: 40, mode: "unplugged first, then screen", title: "Prime Time · Activity Time: Circle of 12", chapter: "5", item: "ct5-act" } },
+    { id: "6B", period: "Period 6", students: 36, hours: { ct: 18, ai: 6, project: 12 }, next: { minutes: 35, mode: "projector", title: "Patterns in Mathematics · Q1 discussion", chapter: "1", item: "ct1-q1" } },
+  ] satisfies Class6Section[],
+};
+
+const L = (abstract: number, pattern: number, decompose: number, algorithmic: number) => ({ abstract, pattern, decompose, algorithmic });
+
+export const class6Students: Class6Student[] = [
+  { id: "6B-12", name: "Riya S.", classId: "6B", levels: L(3, 4, 2, 3), note: "Strong pattern talk", team: "Team Rocket", role: "Data keeper" },
+  { id: "6B-01", name: "Aarav P.", classId: "6B", levels: L(4, 4, 3, 4), note: "Leads group work", team: "Team Rocket", role: "Class leader" },
+  { id: "6B-18", name: "Meher K.", classId: "6B", levels: L(2, 3, 2, 2), note: "Uses hint 2 often", team: "Team Rocket", role: "Chart designer" },
+  { id: "6B-15", name: "Kabir M.", classId: "6B", levels: L(3, 4, 3, 3), note: "", team: "Team Rocket", role: "Speaker" },
+  { id: "6B-27", name: "Sana V.", classId: "6B", levels: L(1, 2, 2, 1), note: "Needs grid support" },
+  { id: "6B-09", name: "Ishaan T.", classId: "6B", levels: L(3, 2, 4, 3), note: "Great at clue tables" },
+  { id: "6B-05", name: "Diya R.", classId: "6B", levels: L(2, 2, 1, 2), note: "Absent 2 sessions" },
+  { id: "6B-02", name: "Arnav G.", classId: "6B", levels: L(4, 3, 3, 4), note: "" },
+  { id: "6A-03", name: "Tara H.", classId: "6A", levels: L(3, 3, 2, 3), note: "Explains clearly" },
+  { id: "6A-07", name: "Vihaan K.", classId: "6A", levels: L(2, 3, 3, 2), note: "" },
+  { id: "6A-11", name: "Navya D.", classId: "6A", levels: L(4, 3, 3, 3), note: "Helps her pair" },
+  { id: "6A-14", name: "Reyansh L.", classId: "6A", levels: L(2, 2, 2, 3), note: "Rushes the explanation" },
+];
+
+export const observationsDemo: Observation[] = [
+  { id: "o1", studentId: "6B-12", date: "2026-10-14", text: "Explained why adding 5 makes a star: “5 and 12 share no factor.”", tags: ["Pattern recognition"], where: "CT 5 · Circle of 12" },
+  { id: "o2", studentId: "6B-12", date: "2026-10-09", text: "Re-counted every tally twice before entering data.", tags: ["Data care"], where: "Project 1 · Stage 3" },
+  { id: "o3", studentId: "6B-12", date: "2026-10-03", text: "Needed hint 2 on the seating-around-the-table question.", tags: ["Decomposition"], where: "CT 2 · Lines and Angles" },
+  { id: "o4", studentId: "6B-12", date: "2026-09-26", text: "Sorted all 7 machines correctly and explained “learns from data”.", tags: ["CG-3"], where: "AI 1 · AI or Automation" },
+  { id: "o5", studentId: "6B-01", date: "2026-10-12", text: "Kept the team on time during the tally.", tags: ["Collaboration"], where: "Project 1 · Stage 3" },
+  { id: "o6", studentId: "6B-01", date: "2026-10-01", text: "Wrote his own rule for the block pattern before building it.", tags: ["Algorithmic thinking"], where: "CT 1 · Pattern Lab" },
+  { id: "o7", studentId: "6B-18", date: "2026-10-10", text: "Used hint 2 on both clock questions, then explained the 6° rule.", tags: ["Abstract thinking"], where: "CT 2 · Clock Angle Lab" },
+  { id: "o8", studentId: "6B-15", date: "2026-10-11", text: "Presented the team’s question clearly.", tags: ["Communication"], where: "Project 1 · Stage 1" },
+  { id: "o9", studentId: "6B-27", date: "2026-10-08", text: "Found the grid hard; worked well with a printed copy.", tags: ["Decomposition"], where: "CT 3 · Number Play" },
+  { id: "o10", studentId: "6B-09", date: "2026-10-07", text: "Built a full clue table for the graph question.", tags: ["Decomposition"], where: "CT 4 · Graph Clue Cracker" },
+];
+
+/** Live answer counts for projector mode (DEMO: as if from student devices). */
+export const responsesDemo: Record<string, number[]> = { "ct1-q1": [14, 9, 6, 4] };
+
+/* Parent view · DEMO */
+export const parentDemo = {
+  child: "Riya",
+  hoursThisWeek: 3,
+  hoursThisYear: 36,
+  made: { count: 2, list: "String-art star · data tally" },
+  growing: "Pattern recognition",
+  featured: { title: "12-point string-art star", body: "From Maths Chapter 5, Prime Time. Riya discovered that adding 5 on a 12-point circle makes a star because 5 and 12 share no common factor.", approvedBy: "Ms. Kapoor" },
+  // PRACTICE, NOT FROM HANDBOOK (render)
+  tryAtHome: { title: "Kitchen clock angles", body: "At dinner, ask Riya the angle between the clock hands at 7:00, then 7:30. No screen needed. It practises next week’s chapter, Lines and Angles.", minutes: 10 },
+  showcase: { title: "CT Fair · Sat 14 Nov · 10 AM", body: "Riya’s team presents Data Detectives at stall 6." },
+};
+
+/* School dashboard · DEMO */
+export const schoolDemo = {
+  name: "Green Valley Public School (CBSE)",
+  week: 14,
+  weeks: 36,
+  observationNotes: 1248,
+  approvedMakes: 612,
+  projectsUnderway: 24,
+  sections: [
+    { id: "Class 3A", teacher: "Ms. Rao", band: "3-5", hours: 19 },
+    { id: "Class 4A", teacher: "Ms. Rao", band: "3-5", hours: 21 },
+    { id: "Class 5A", teacher: "Mr. Khan", band: "3-5", hours: 15 },
+    { id: "Class 6A", teacher: "Ms. Kapoor", band: "6-8", hours: 38 },
+    { id: "Class 6B", teacher: "Ms. Kapoor", band: "6-8", hours: 36 },
+    { id: "Class 7A", teacher: "Mr. Iyer", band: "6-8", hours: 41 },
+    { id: "Class 7B", teacher: "Mr. Iyer", band: "6-8", hours: 27 },
+    { id: "Class 8A", teacher: "Ms. Fernandes", band: "6-8", hours: 44 },
+    { id: "Class 8B", teacher: "Ms. Fernandes", band: "6-8", hours: 39 },
+  ] satisfies SchoolSection[],
+  training: [
+    { name: "Ms. Kapoor", done: 2 },
+    { name: "Mr. Iyer", done: 4 },
+    { name: "Ms. Fernandes", done: 1 },
+    { name: "Ms. Rao", done: 3 },
+    { name: "Mr. Khan", done: 0 },
+    { name: "Ms. Das", done: 5 },
+  ],
+  trainingTotal: 7,
+  comingUp: { title: "CT Fair · Classes 6–8 · 14 Nov", body: "24 project stalls registered. Parents invited through the parent app." },
+  // From the renders; check against the actual CBSE circular before launch.
+  deadline: { label: "Composite Skill Lab · Circular Skill-75/2024", title: "Deadline about Aug 2027", body: "Lab bookings this month: 38 CT & AI sessions, 12 Kaushal Bodh sessions." },
+};
