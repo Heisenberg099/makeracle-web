@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { LeadForm } from "@/components/website/forms/LeadForm";
-import { seo, teachers } from "@/content/website/en";
+import { seo, teachers, platform } from "@/content/website/en";
 
 export const metadata: Metadata = {
   title: { absolute: seo.teachers.title },
@@ -20,6 +21,11 @@ export default function TeachersPage() {
         </h1>
         <p className="lead" style={{ maxWidth: 560, marginTop: 32 }}>
           {hero.sub}
+        </p>
+        <p style={{ marginTop: 20 }}>
+          <Link href={platform.onTeachers.href} className="btn btn-ghost">
+            {platform.onTeachers.text} <span aria-hidden="true">→</span>
+          </Link>
         </p>
       </section>
       <section className="bg-ink">

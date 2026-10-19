@@ -59,6 +59,7 @@ async function Present({ params }: { params: PageProps<"/teacher/present/[id]">[
       responses={responsesDemo[item.id]}
       prev={order[i - 1]}
       next={order[i + 1]}
+      chapters={ctChapters.map((c) => ({ href: `/teacher/present/ct${c.number}-q1`, label: `CT ${c.number}`, current: c.number === ch.number }))}
       students={class6Students.filter((s) => s.classId === "6B").map((s) => ({ id: s.id, name: s.name }))}
     />
   );

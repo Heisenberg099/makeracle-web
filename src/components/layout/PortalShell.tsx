@@ -46,6 +46,10 @@ export function PortalShell({
             );
           })}
         </nav>
+        <nav aria-label="Account" style={{ borderTop: "1px solid var(--ink-2)", paddingTop: 10 }}>
+          <Link href="/">Makeracle website</Link>
+          <Link href="/sign-in">Sign out</Link>
+        </nav>
         <div style={{ marginTop: "auto" }}>
           {footer ?? (
             <p className="sm" style={{ color: "var(--muted-on-ink)" }}>

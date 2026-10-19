@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LeadForm } from "@/components/website/forms/LeadForm";
-import { parents, seo } from "@/content/website/en";
+import { parents, seo, platform } from "@/content/website/en";
 
 export const metadata: Metadata = {
   title: { absolute: seo.parents.title },
@@ -28,6 +28,9 @@ export default function ParentsPage() {
           </Link>
           <Link href="#bootcamps" className="btn btn-ghost">
             {waitlist}
+          </Link>
+          <Link href={platform.onParents.href} className="btn btn-ghost">
+            {platform.onParents.text} <span aria-hidden="true">→</span>
           </Link>
         </div>
       </section>

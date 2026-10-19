@@ -13,6 +13,7 @@ const nav = [
   { href: "/studio", label: "See the student view" },
   { href: "/admin/school", label: "School dashboard" },
   { href: "/teacher/lessons", label: "Lesson library" },
+  { href: "/teacher/marking", label: "Rubrics & marking" },
   { href: "/teacher/review", label: "Student work" },
   { href: "/teacher/training", label: "Training & help" },
 ];

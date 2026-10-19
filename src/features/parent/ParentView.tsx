@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useValue } from "@/lib/learning/work-store";
 import type { SavedMarks } from "@/features/studio/projects/ProjectWorkspace";
@@ -83,7 +84,11 @@ export function ParentView({ d, rubric }: { d: Demo; rubric: { id: string; name:
   return (
     <div lang={lang}>
       <div className="row-between" style={{ alignItems: "center", padding: "18px 0" }}>
-        <p className="sm" style={{ fontWeight: 700 }}>makeracle · Parent</p>
+        <p className="sm" style={{ fontWeight: 700 }}>
+          <Link href="/" className="inline-target" style={{ textDecoration: "none" }}>makeracle</Link> · Parent
+        </p>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <Link href="/sign-in" className="sm inline-target" style={{ fontWeight: 600 }}>Sign out</Link>
         <div className="toggles" role="group" aria-label="Language" style={{ background: "var(--paper)", borderRadius: 999, padding: 4 }}>
           {(
             [
@@ -95,6 +100,7 @@ export function ParentView({ d, rubric }: { d: Demo; rubric: { id: string; name:
               {label}
             </button>
           ))}
+        </div>
         </div>
       </div>
       <h1 className="s-title" style={{ fontSize: "clamp(40px, 6vw, 72px)" }}>{t.week(d.child)}</h1>

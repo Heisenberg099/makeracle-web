@@ -43,6 +43,9 @@ export function SiteHeader() {
                 </Link>
               );
             })}
+            <Link href="/sign-in" className="nav-sign-in" onClick={() => setOpen(false)}>
+              {t("nav.login")}
+            </Link>
           </nav>
 
           <div className="header-actions">
@@ -53,12 +56,9 @@ export function SiteHeader() {
                 </button>
               ))}
             </div>
-            {/* Hidden until the portals launch (site.portalsLive). */}
-            {site.portalsLive && (
-              <Link href="/login" className="sm" style={{ fontWeight: 600 }}>
-                {t("nav.login")}
-              </Link>
-            )}
+            <Link href="/sign-in" className="sign-in-link">
+              {t("nav.login")}
+            </Link>
             <Link href="/workshops#book" className="btn header-cta">
               {t("cta.book")}
             </Link>

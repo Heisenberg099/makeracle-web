@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { site } from "@/content/website/site";
-import { common } from "@/content/website/en";
+import { common, platform } from "@/content/website/en";
 
 type FootLink = { label: string; href?: string };
 
@@ -16,6 +16,7 @@ const cols: { title: string; links: FootLink[] }[] = [
       { label: "Workshops", href: "/workshops" },
       { label: "For Teachers", href: "/teachers" },
       { label: "For Parents", href: "/parents" },
+      ...platform.footer,
     ],
   },
   {

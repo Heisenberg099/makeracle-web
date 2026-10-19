@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { programmes, seo } from "@/content/website/en";
+import Link from "next/link";
+import { programmes, seo, platform } from "@/content/website/en";
 import { CourseCatalog } from "./CourseCatalog";
 import styles from "./programmes.module.css";
 
@@ -23,6 +24,11 @@ export default function ProgrammesPage() {
         </h1>
         <p className="lead" style={{ maxWidth: 560, marginTop: 28 }}>
           {hero.sub}
+        </p>
+        <p style={{ marginTop: 20 }}>
+          <Link href={platform.onProgrammes.href} className="btn btn-ghost">
+            {platform.onProgrammes.text} <span aria-hidden="true">→</span>
+          </Link>
         </p>
       </section>
 

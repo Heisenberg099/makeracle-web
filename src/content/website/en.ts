@@ -37,6 +37,33 @@ export const common = {
   },
 };
 
+/**
+ * Links from the website into the Class 6 platform (Studio, Teacher Hub,
+ * parent view, school dashboard). These run on demo data until launch.
+ */
+export const platform = {
+  eyebrow: "Class 6 · CT & AI · live demo",
+  title: "See the Class 6 platform.",
+  body: "Every chapter of the CBSE Class 6 Computational Thinking & AI handbook, built as labs students play, with the tools teachers, parents and principals use alongside. It runs on sample data, so explore freely.",
+  signIn: "Sign in",
+  demoNote: "Demo · sample data only",
+  areas: [
+    { href: "/studio", who: "For students", title: "Student Studio", line: "10 CT labs, all 100 handbook questions, Thinking Spots, AI chapters, projects and a class wall." },
+    { href: "/teacher", who: "For teachers", title: "Teacher Hub", line: "Today’s classes, a chapter planner with handbook solutions, projector mode and an Observation Journal." },
+    { href: "/parent", who: "For parents", title: "Parent view", line: "Your child’s week, featured work and privacy choices you control." },
+    { href: "/admin/school", who: "For principals", title: "School dashboard", line: "CBSE hours by section, teacher training and what’s coming up." },
+  ],
+  // Short links placed on the matching website pages
+  onTeachers: { text: "See the Teacher Hub (demo)", href: "/teacher" },
+  onParents: { text: "See the parent view (demo)", href: "/parent" },
+  onSchools: { text: "See the school dashboard (demo)", href: "/admin/school" },
+  onProgrammes: { text: "Open the Class 6 Studio (demo)", href: "/studio" },
+  footer: [
+    { label: "Sign in", href: "/sign-in" },
+    { label: "Class 6 Studio (demo)", href: "/studio" },
+  ],
+};
+
 /** SEO titles (< 60 chars) and meta descriptions (< 155 chars). */
 export const seo = {
   home: {

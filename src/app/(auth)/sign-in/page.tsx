@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Logo } from "@/components/brand/Logo";
 import { aiChapters, ctChapters, curriculum } from "@/curriculum/class-6";
@@ -55,6 +56,29 @@ export default function SignInPage() {
             Demo sign-in. Class code {"6B-KAP-27"} works with any picture and any 4-digit PIN.
           </p>
           <SignInForm pictures={pictures} demoCode="6B-KAP-27" />
+          <nav aria-label="Demo shortcuts" className="s-card" style={{ marginTop: 28 }}>
+            <p className="lbl">Demo shortcuts · skip sign-in</p>
+            <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 2 }}>
+              {[
+                ["/studio", "Student Studio"],
+                ["/teacher", "Teacher Hub"],
+                ["/parent", "Parent view"],
+                ["/admin/school", "School dashboard"],
+                ["/admin/leads", "Lead inbox (Makeracle staff)"],
+              ].map(([href, label]) => (
+                <li key={href}>
+                  <Link href={href} className="inline-target" style={{ fontWeight: 600 }}>
+                    {label} <span aria-hidden="true">→</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <p className="sm" style={{ marginTop: 16 }}>
+            <Link href="/" className="ul inline-target">
+              <span aria-hidden="true">←</span> Back to the website
+            </Link>
+          </p>
         </div>
       </section>
     </main>

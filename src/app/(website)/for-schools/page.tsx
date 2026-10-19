@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { LeadForm } from "@/components/website/forms/LeadForm";
-import { common, schools, seo } from "@/content/website/en";
+import { common, schools, seo, platform } from "@/content/website/en";
 import { site } from "@/content/website/site";
 
 export const metadata: Metadata = {
@@ -78,6 +78,9 @@ export default function ForSchoolsPage() {
             </Link>
             <Link href="#pilot" className="btn btn-ghost">
               {common.cta.pilot}
+            </Link>
+            <Link href={platform.onSchools.href} className="btn btn-ghost">
+              {platform.onSchools.text} <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>

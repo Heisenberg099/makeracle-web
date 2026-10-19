@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import type { SchoolSection } from "@/lib/types";
 
@@ -40,6 +41,9 @@ export function SchoolActions() {
       >
         Share with management
       </button>
+      <Link href="/sign-in" className="sm inline-target" style={{ fontWeight: 600 }}>
+        Sign out
+      </Link>
       <span className="sm" role="status">{msg}</span>
     </div>
   );

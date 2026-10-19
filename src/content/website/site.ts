@@ -26,7 +26,7 @@ export const site = {
     { label: "YouTube", icon: "youtube", href: "#" },
     { label: "X", icon: "x", href: "#" },
   ],
-  /** Show the "Login" link in the header once the portals launch. */
+  /** The portals (Studio, Teacher Hub, parent, school) run on demo data until the backend launches. */
   portalsLive: false,
   /** Set when the school brochure PDF exists, e.g. "/makeracle-school-brochure.pdf". */
   brochureUrl: null as string | null,

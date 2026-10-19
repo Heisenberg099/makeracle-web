@@ -21,6 +21,8 @@ type Props = {
   responses?: number[];
   prev?: string;
   next?: string;
+  /** Jump to another chapter: its first question in projector mode. */
+  chapters?: { href: string; label: string; current: boolean }[];
   students: { id: string; name: string }[];
 };
 
@@ -147,6 +149,21 @@ export function QuestionProjector(p: Props) {
               </ol>
             )}
           </section>
+
+          {p.chapters && (
+            <nav aria-label="Chapters" style={{ marginTop: 16 }}>
+              <p className="sm" style={{ color: "var(--muted-on-ink)", marginBottom: 6 }}>Switch chapter</p>
+              <ul style={{ display: "flex", flexWrap: "wrap", gap: 6, listStyle: "none", margin: 0, padding: 0 }}>
+                {p.chapters.map((c) => (
+                  <li key={c.href}>
+                    <Link href={c.href} aria-current={c.current ? "page" : undefined} className="tool-btn" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", background: c.current ? "var(--red-deep)" : "var(--ink-2)", color: "#fff" }}>
+                      {c.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
 
           <div className="row-between" style={{ marginTop: 16 }}>
             {p.prev ? (
