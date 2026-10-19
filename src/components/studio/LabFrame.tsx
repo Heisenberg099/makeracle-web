@@ -9,8 +9,11 @@ export function LabFrame({
   title,
   red,
   intro,
+  kicker,
   children,
 }: {
+  /** Small line above the title (e.g. chapter and ethics tag). */
+  kicker?: string;
   dark?: boolean;
   chips?: { text: string; solid?: boolean; yellow?: boolean }[];
   /** Replaces the chips on the right of the top bar (e.g. a step bar). */
@@ -34,6 +37,11 @@ export function LabFrame({
             </p>
           )}
         </StudioTopBar>
+        {kicker && (
+          <p className="sm muted" style={{ marginTop: 8 }}>
+            {kicker}
+          </p>
+        )}
         <div className="lab-head">
           <h1 className="lab-title">
             {title}

@@ -431,3 +431,6 @@ fieldset.fld { border: 0; margin: 0; padding: 0; }
 .tapgrid { display: grid; gap: 4px; margin: 0 auto; }
 .tapgrid > button { min-width: 44px; min-height: 44px; }
 .inline-target { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; }
+@media (max-width: 760px) { .eq-grid { grid-template-columns: 1fr !important; text-align: center; } }
+.lab-grid-inbox { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); }
+@media (max-width: 960px) { .lab-grid-inbox { grid-template-columns: 1fr; } }
