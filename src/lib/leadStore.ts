@@ -47,7 +47,7 @@ export async function saveLead(lead: Lead) {
 
 export async function sendAcknowledgement(lead: Lead) {
   // TODO(backend): WhatsApp Business template message + email confirmation.
-  // Keep the message free of salary/outcome promises (see /safety#promise).
+  // Keep the message free of salary/outcome promises (see "Never claim" in src/content/en.ts).
   const to = lead.values.phone || lead.values.email || lead.values.phoneOrEmail;
   console.info(`[leads] acknowledgement queued for ${lead.type} lead ${lead.id} → ${String(to || "no contact")}`);
 }

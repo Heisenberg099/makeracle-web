@@ -19,6 +19,8 @@ come in Phase 2 — early work for those lives on the [`phase-2-wip`](../../tree
 | `/workshops` | The 90-minute workshop: agenda, what to provide, **booking form** |
 | `/workshops/feedback` | Post-workshop feedback form for principals |
 | `/teachers` | What teachers get + Teacher hub waitlist |
+| `/parents` | For parents: sample portfolio, showcase days, safety promise, bootcamp waitlist |
+| `/terms`, `/refund-policy` | Placeholders until the lawyer-reviewed policies exist (not indexed) |
 | `/about`, `/safety`, `/privacy` | Company, child-safety & AI-use promises, DPDP-aligned privacy draft |
 | `/contact` | Contact form + partner form (school chains, Sahodaya clusters, lab & CSR partners) |
 | `/admin/leads` | **Internal** lead inbox (needs `ADMIN_TOKEN`) with CSV export |
@@ -67,7 +69,8 @@ src/
     intro/ScrollIntro.tsx    The scroll-driven "push the panel" intro
     illustrations/           Hand-written SVG illustrations (no image assets)
     forms/LeadForm.tsx       Renders any form defined in src/lib/forms.ts
-  content/                   Copy and data: site facts, programmes, courses, FAQs
+  content/en.ts              ALL page copy, courses and form wording (single source for translation)
+  content/site.ts            Company facts, contact placeholders, nav, alumni list
   i18n/                      English + Hindi UI strings and the language switch
   lib/
     forms.ts                 Every form's fields + shared validation
