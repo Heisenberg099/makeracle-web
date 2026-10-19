@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { courses } from "@/content/en";
-import { site } from "@/content/site";
+import { courses } from "@/content/website/en";
+import { site } from "@/content/website/site";
 
 const pages = ["", "/for-schools", "/programmes", "/workshops", "/teachers", "/parents", "/about", "/safety", "/contact", "/privacy"];
 

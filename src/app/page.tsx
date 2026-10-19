@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ScrollIntro } from "@/components/intro/ScrollIntro";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import { AlumniBar } from "@/components/AlumniBar";
-import { Icon } from "@/components/Icon";
-import { HeroBurst } from "@/components/illustrations/HeroBurst";
-import { ProjectIcon } from "@/components/illustrations/ProjectIcon";
-import { common, flagshipProjects, home, seo } from "@/content/en";
-import { site } from "@/content/site";
+import { ScrollIntro } from "@/components/website/scroll-intro/ScrollIntro";
+import { SiteHeader } from "@/components/website/SiteHeader";
+import { SiteFooter } from "@/components/website/SiteFooter";
+import { AlumniBar } from "@/components/website/AlumniBar";
+import { Icon } from "@/components/ui/Icon";
+import { HeroBurst } from "@/components/website/illustrations/HeroBurst";
+import { ProjectIcon } from "@/components/website/illustrations/ProjectIcon";
+import { common, flagshipProjects, home, platform, seo } from "@/content/website/en";
+import { site } from "@/content/website/site";
 import s from "./home.module.css";
 
 export const metadata: Metadata = {
@@ -32,6 +32,7 @@ export default function HomePage() {
         <CbseRequirement />
         <HowItWorks />
         <WhatStudentsBuild />
+        <ClassSixPlatform />
         <WhySchools />
         <Outcomes />
         <Testimonials />
@@ -227,6 +228,49 @@ function WhatStudentsBuild() {
             </Link>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/** Entry points into the Class 6 platform (Studio, Teacher Hub, parent view, school dashboard). */
+function ClassSixPlatform() {
+  return (
+    <section className="bg-red" id="class-6" aria-labelledby="platform-title" style={{ scrollMarginTop: 80 }}>
+      <div className="wrap sec">
+        <div className="row-between" style={{ alignItems: "flex-end", marginBottom: 40 }}>
+          <div style={{ maxWidth: 760 }}>
+            <p className="lbl" style={{ color: "#fff", fontWeight: 600 }}>{platform.eyebrow}</p>
+            <h2 id="platform-title" className="cap white h-l">
+              {platform.title}
+            </h2>
+            <p className="body" style={{ marginTop: 16, maxWidth: 620 }}>
+              {platform.body}
+            </p>
+          </div>
+          <Link href="/sign-in" className="btn btn-white">
+            {platform.signIn} →
+          </Link>
+        </div>
+        <div className="grid g4" style={{ gap: 14 }}>
+          {platform.areas.map((a) => (
+            <Link key={a.href} href={a.href} className="card" style={{ textDecoration: "none", color: "var(--ink)", display: "flex", flexDirection: "column", gap: 10, padding: 24 }}>
+              <span className="lbl" style={{ margin: 0, color: "var(--muted)" }}>
+                {a.who}
+              </span>
+              <span className="ttl" style={{ fontSize: 28 }}>
+                {a.title}
+              </span>
+              <span className="sm">{a.line}</span>
+              <span className="sm" style={{ fontWeight: 700, marginTop: "auto" }}>
+                Open <span aria-hidden="true">→</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+        <p className="sm" style={{ marginTop: 16 }}>
+          {platform.demoNote}
+        </p>
       </div>
     </section>
   );

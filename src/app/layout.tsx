@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LangProvider } from "@/i18n/LangProvider";
-import { site } from "@/content/site";
-import { seo } from "@/content/en";
+import { site } from "@/content/website/site";
+import { seo } from "@/content/website/en";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

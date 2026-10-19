@@ -24,6 +24,16 @@ come in Phase 2 — early work for those lives on the [`phase-2-wip`](../../tree
 | `/about`, `/safety`, `/privacy` | Company, child-safety & AI-use promises, DPDP-aligned privacy draft |
 | `/contact` | Contact form + partner form (school chains, Sahodaya clusters, lab & CSR partners) |
 | `/admin/leads` | **Internal** lead inbox (needs `ADMIN_TOKEN`) with CSV export |
+
+**Class 6 CT & AI platform** (demo data; see [docs/CLASS6.md](docs/CLASS6.md) for every route):
+
+| Route | What it is |
+| --- | --- |
+| `/sign-in` | Student (class code + picture + PIN) and teacher/parent (phone + OTP) sign-in, UI only |
+| `/studio/…` | Student Studio: journey, 10 CT labs, all 100 questions, Thinking Spots, AI paths, projects, class wall, portfolio |
+| `/teacher/…` | Teacher Hub: today, chapter planner, projector mode, Observation Journal |
+| `/parent` | Parent view with consent switches |
+| `/admin/school` | Principal dashboard |
 | `POST /api/leads` | Every form submits here; validated server-side |
 
 ## Getting started
@@ -57,25 +67,19 @@ npm start           # serve the production build
 
 ## Project layout
 
+**Start with [docs/PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md)**: the full map and naming rules.
+
 ```
 src/
-  app/
-    page.tsx                 Home (intro + sections)
-    (site)/                  Public pages sharing the header + footer
-    admin/leads/             Internal lead inbox
-    api/leads/route.ts       Form endpoint
-    globals.css              Design tokens + shared styles
-  components/
-    intro/ScrollIntro.tsx    The scroll-driven "push the panel" intro
-    illustrations/           Hand-written SVG illustrations (no image assets)
-    forms/LeadForm.tsx       Renders any form defined in src/lib/forms.ts
-  content/en.ts              ALL page copy, courses and form wording (single source for translation)
-  content/site.ts            Company facts, contact placeholders, nav, alumni list
-  i18n/                      English + Hindi UI strings and the language switch
-  lib/
-    forms.ts                 Every form's fields + shared validation
-    leadStore.ts             Where leads go (stub → replace with DB/CRM)
-docs/                        Architecture, i18n, roadmap
+  app/            Routes only, grouped by audience: (website) (auth) (student-studio) (teacher-hub)
+                  (parent) (school-admin) (internal) · URLs never include the (group) names
+  components/     Shared building blocks: brand, layout, ui, website
+  features/       Product screens for any class: studio, teacher, parent, school-admin, auth
+  curriculum/     One folder per class: class-6/ (handbook content, design copy, labs)
+  content/        Website copy (content/website/en.ts holds the website text)
+  i18n/           English + Hindi UI strings
+  lib/            demo-data, types, learning (work store), leads
+docs/             Structure, architecture, Class 6, i18n, roadmap
 ```
 
 ## Before launch
