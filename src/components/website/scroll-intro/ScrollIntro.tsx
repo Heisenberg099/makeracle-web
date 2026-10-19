@@ -10,9 +10,11 @@ import styles from "./ScrollIntro.module.css";
  * black panel off to the right, revealing the full MAKERACLE wordmark; the
  * sticky stage then releases and the website scrolls in underneath.
  *
- * Scroll progress → `t` (0…1) → CSS variable `--t`. Legs swing with distance
- * travelled, so the student "walks" only while you scroll.
- * Reduced-motion users get the finished frame without the long scroll.
+ * Scroll progress → `t` (0…1) → CSS variable `--t`. In browsers with CSS
+ * scroll-driven animations, the CSS module sets `--t` itself, so the push
+ * works before this script loads; the JS here is the fallback and drives the
+ * walking legs. Reduced-motion users get the finished frame without the long
+ * scroll. "Skip intro" always jumps past it.
  */
 export function ScrollIntro() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -92,12 +94,19 @@ export function ScrollIntro() {
           <PushingStudent stride={eased >= 1 ? 0 : stride} />
         </div>
 
-        <div className={styles.hint} aria-hidden="true" style={{ opacity: 1 - eased }}>
-          <p className="sm muted">Scroll to help them push</p>
-          <div className={styles.bar}>
+        <div className={styles.hint}>
+          <p className="sm muted" aria-hidden="true">
+            Scroll to help them push
+          </p>
+          <div className={styles.bar} aria-hidden="true">
             <span />
           </div>
-          <p className="sm">Students build real AI, web and app projects — in school.</p>
+          <p className="sm" aria-hidden="true">
+            Students build real AI, web and app projects — in school.
+          </p>
+          <a href="#main" className={styles.skip}>
+            Skip intro ↓
+          </a>
         </div>
 
         <div className={styles.done}>

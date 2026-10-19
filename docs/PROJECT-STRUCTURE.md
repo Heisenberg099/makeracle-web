@@ -45,7 +45,7 @@ src/
 │       ├── route-params.ts      Validates /studio/ct/[chapter] params
 │       └── index.ts             Import point: `import { ctChapters } from "@/curriculum/class-6"`
 │
-├── content/website/             Website copy: company facts, home, programmes
+├── content/website/             Website copy: en.ts (all website text) and site.ts (company facts)
 ├── i18n/                        English/Hindi strings for the website header
 └── lib/                         NON-UI CODE
     ├── demo-data/               Fictional sample data (backend replaces it). class-6/ + general-portals

@@ -19,9 +19,21 @@ come in Phase 2 — early work for those lives on the [`phase-2-wip`](../../tree
 | `/workshops` | The 90-minute workshop: agenda, what to provide, **booking form** |
 | `/workshops/feedback` | Post-workshop feedback form for principals |
 | `/teachers` | What teachers get + Teacher hub waitlist |
+| `/parents` | For parents: sample portfolio, showcase days, safety promise, bootcamp waitlist |
+| `/terms`, `/refund-policy` | Placeholders until the lawyer-reviewed policies exist (not indexed) |
 | `/about`, `/safety`, `/privacy` | Company, child-safety & AI-use promises, DPDP-aligned privacy draft |
 | `/contact` | Contact form + partner form (school chains, Sahodaya clusters, lab & CSR partners) |
 | `/admin/leads` | **Internal** lead inbox (needs `ADMIN_TOKEN`) with CSV export |
+
+**Class 6 CT & AI platform** (demo data; see [docs/CLASS6.md](docs/CLASS6.md) for every route):
+
+| Route | What it is |
+| --- | --- |
+| `/sign-in` | Student (class code + picture + PIN) and teacher/parent (phone + OTP) sign-in, UI only |
+| `/studio/…` | Student Studio: journey, 10 CT labs, all 100 questions, Thinking Spots, AI paths, projects, class wall, portfolio |
+| `/teacher/…` | Teacher Hub: today, chapter planner, projector mode, Observation Journal |
+| `/parent` | Parent view with consent switches |
+| `/admin/school` | Principal dashboard |
 | `POST /api/leads` | Every form submits here; validated server-side |
 
 ## Getting started
@@ -64,7 +76,7 @@ src/
   components/     Shared building blocks: brand, layout, ui, website
   features/       Product screens for any class: studio, teacher, parent, school-admin, auth
   curriculum/     One folder per class: class-6/ (handbook content, design copy, labs)
-  content/        Website copy
+  content/        Website copy (content/website/en.ts holds the website text)
   i18n/           English + Hindi UI strings
   lib/            demo-data, types, learning (work store), leads
 docs/             Structure, architecture, Class 6, i18n, roadmap

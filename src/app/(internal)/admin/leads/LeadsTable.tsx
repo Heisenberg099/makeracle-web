@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import type { Lead } from "@/lib/leads/lead-store";
+import { formTypes } from "@/lib/leads/forms";
 import { downloadCsv } from "@/lib/leads/csv";
 
 const stages: Lead["stage"][] = ["New", "Contacted", "Workshop booked", "Workshop done", "Pilot", "Annual", "Lost"];
@@ -63,7 +64,7 @@ export function LeadsTable() {
         <>
           <div className="row-between" style={{ alignItems: "center", marginBottom: 16 }}>
             <div className="toggles" role="group" aria-label="Filter by form">
-              {["all", "workshop", "pilot", "partner", "contact", "teacher-signup", "newsletter", "workshop-feedback"].map((f) => (
+              {["all", ...formTypes].map((f) => (
                 <button key={f} type="button" className="tog" aria-pressed={filter === f} onClick={() => setFilter(f)}>
                   {f}
                 </button>
@@ -108,7 +109,7 @@ export function LeadsTable() {
                       <span className="chip">{l.type}</span>
                     </td>
                     <td>
-                      {str(l.values.contactName || l.values.name)}
+                      {str(l.values.contactName || l.values.name || l.values.parentName)}
                       <br />
                       <span className="muted">{str(l.values.role || l.values.iam)}</span>
                     </td>

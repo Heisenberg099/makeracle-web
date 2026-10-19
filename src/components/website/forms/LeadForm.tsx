@@ -1,50 +1,61 @@
 "use client";
 
-import { useId, useState } from "react";
+import Link from "next/link";
+import { useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { forms, validate, type Field, type FormType, type FormValues } from "@/lib/leads/forms";
+import { formCopy } from "@/content/website/en";
+import { forms, validate, type Field, type FormDef, type FormType, type FormValues } from "@/lib/leads/forms";
 
 type Props = {
   type: FormType;
   /** extra values sent with the lead (e.g. which course page it came from) */
   context?: Record<string, string>;
-  compact?: boolean;
 };
 
-function initialValues(fields: Field[]): FormValues {
+function initialValues(fields: readonly Field[]): FormValues {
   const v: FormValues = {};
   for (const f of fields) v[f.name] = f.kind === "multichips" ? [] : f.kind === "consent" ? false : "";
   return v;
 }
 
-function utm(): Record<string, string> {
+/** Campaign tags from the URL, saved with every lead. */
+function campaign(): Record<string, string> {
   if (typeof window === "undefined") return {};
   const p = new URLSearchParams(window.location.search);
   const out: Record<string, string> = {};
-  for (const k of ["utm_source", "utm_medium", "utm_campaign", "course"]) {
+  for (const k of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "course"]) {
     const v = p.get(k);
     if (v) out[k] = v;
   }
   return out;
 }
 
-export function LeadForm({ type, context, compact }: Props) {
-  const def = forms[type];
+export function LeadForm({ type, context }: Props) {
+  const def: FormDef = forms[type];
   const uid = useId();
   const pathname = usePathname();
+  const successRef = useRef<HTMLDivElement>(null);
   const [values, setValues] = useState<FormValues>(() => initialValues(def.fields));
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "failed">("idle");
 
-  const set = (name: string, v: string | string[] | boolean) => setValues((s) => ({ ...s, [name]: v }));
+  const set = (name: string, v: string | string[] | boolean) => {
+    setValues((s) => ({ ...s, [name]: v }));
+    if (errors[name])
+      setErrors((s) => {
+        const next = { ...s };
+        delete next[name];
+        return next;
+      });
+  };
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     const check = validate(type, values);
     setErrors(check.errors);
     if (Object.keys(check.errors).length) {
-      const first = Object.keys(check.errors)[0];
-      document.getElementById(`${uid}-${first}`)?.focus();
+      const first = def.fields.find((f) => check.errors[f.name]);
+      if (first) document.getElementById(`${uid}-${first.name}`)?.focus();
       return;
     }
     setStatus("sending");
@@ -52,7 +63,7 @@ export function LeadForm({ type, context, compact }: Props) {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type, values: check.values, source: pathname, campaign: utm(), context }),
+        body: JSON.stringify({ type, values: check.values, source: pathname, campaign: campaign(), context }),
       });
       const body = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -61,6 +72,7 @@ export function LeadForm({ type, context, compact }: Props) {
         return;
       }
       setStatus("sent");
+      requestAnimationFrame(() => successRef.current?.focus());
     } catch {
       setStatus("failed");
     }
@@ -68,23 +80,15 @@ export function LeadForm({ type, context, compact }: Props) {
 
   if (status === "sent") {
     return (
-      <div role="status" className="stack" style={{ gap: 18 }}>
+      <div ref={successRef} tabIndex={-1} role="status" className="stack" style={{ gap: 18, outline: "none" }}>
         <div style={{ width: 64, height: 64, borderRadius: 999, background: "var(--red)", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <path d="M6 14 L12 20 L22 8" />
           </svg>
         </div>
-        <h3 className="cap" style={{ fontSize: compact ? 32 : 56, color: "inherit" }}>
-          {def.success.title}
-        </h3>
-        <p className="body">{def.success.body}</p>
-        {"steps" in def.success && def.success.steps && (
-          <ol style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.9 }}>
-            {def.success.steps.map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ol>
-        )}
+        <p className="lead" style={{ fontWeight: 600 }}>
+          {def.success}
+        </p>
         <button
           type="button"
           className="tog"
@@ -94,7 +98,7 @@ export function LeadForm({ type, context, compact }: Props) {
             setStatus("idle");
           }}
         >
-          Send another
+          {formCopy.sendAnother}
         </button>
       </div>
     );
@@ -102,18 +106,21 @@ export function LeadForm({ type, context, compact }: Props) {
 
   return (
     <form onSubmit={onSubmit} noValidate aria-label={def.title}>
-      <div className={compact ? "stack" : "form-grid"}>
+      <p className="sm muted" style={{ marginBottom: 20 }}>
+        {formCopy.requiredNote}
+      </p>
+      <div className="form-grid">
         {def.fields.map((f) => (
           <FieldInput key={f.name} id={`${uid}-${f.name}`} field={f} value={values[f.name]} error={errors[f.name]} onChange={(v) => set(f.name, v)} />
         ))}
       </div>
       {status === "failed" && (
         <p className="sm" role="alert" style={{ color: "var(--red-text)", marginTop: 16 }}>
-          Something went wrong sending this. Please check the fields above, or WhatsApp us.
+          {formCopy.failed}
         </p>
       )}
-      <button type="submit" className={`btn${compact ? "" : " btn-lg btn-block"}`} style={{ marginTop: compact ? 12 : 28 }} disabled={status === "sending"}>
-        {status === "sending" ? "Sending…" : def.submitLabel}
+      <button type="submit" className="btn btn-lg btn-block" style={{ marginTop: 28 }} disabled={status === "sending"}>
+        {status === "sending" ? formCopy.sending : def.submitLabel}
       </button>
     </form>
   );
@@ -135,7 +142,12 @@ function FieldInput({
   const errId = `${id}-err`;
   const described = error ? errId : undefined;
   const cls = `fld${f.full ? " full" : ""}`;
-  const req = f.required ? " *" : "";
+  const req = f.required ? (
+    <span className="req" aria-hidden="true">
+      {" "}
+      *
+    </span>
+  ) : null;
   const err = error ? (
     <span id={errId} className="err">
       {error}
@@ -146,10 +158,21 @@ function FieldInput({
     return (
       <div className={cls}>
         <label className="check" style={{ fontWeight: 400 }}>
-          <input id={id} type="checkbox" checked={value === true} onChange={(e) => onChange(e.target.checked)} aria-describedby={described} aria-invalid={!!error} />
+          <input
+            id={id}
+            type="checkbox"
+            checked={value === true}
+            onChange={(e) => onChange(e.target.checked)}
+            aria-describedby={described}
+            aria-invalid={!!error}
+            aria-required={f.required || undefined}
+          />
           <span>
-            {f.label}
-            {req}
+            {f.label}{" "}
+            <Link href="/privacy" target="_blank">
+              {formCopy.privacyLink}
+            </Link>
+            .{req}
           </span>
         </label>
         {err}
@@ -161,12 +184,12 @@ function FieldInput({
     const multi = f.kind === "multichips";
     const arr = Array.isArray(value) ? value : [];
     return (
-      <fieldset className={cls} aria-describedby={described}>
+      <fieldset className={cls} aria-describedby={described} aria-required={f.required || undefined}>
         <legend>
           {f.label}
           {req}
         </legend>
-        <div className="toggles" style={{ marginTop: 6 }}>
+        <div className="toggles" style={{ marginTop: 8 }}>
           {(f.options ?? []).map((o, i) => {
             const on = multi ? arr.includes(o) : value === o;
             return (
@@ -181,7 +204,7 @@ function FieldInput({
                   else onChange(on ? "" : o);
                 }}
               >
-                {f.name === "classes" || f.name === "classesTaught" ? `Class ${o}` : o}
+                {f.optionPrefix && o !== "Other" ? `${f.optionPrefix}${o}` : o}
               </button>
             );
           })}
@@ -198,6 +221,7 @@ function FieldInput({
     "aria-required": f.required || undefined,
     value: typeof value === "string" ? value : "",
     placeholder: f.placeholder,
+    autoComplete: f.autoComplete,
   };
 
   return (
@@ -208,7 +232,7 @@ function FieldInput({
       </label>
       {f.kind === "select" ? (
         <select {...common} onChange={(e) => onChange(e.target.value)}>
-          <option value="">Choose…</option>
+          <option value="">{formCopy.choose}</option>
           {(f.options ?? []).map((o) => (
             <option key={o}>{o}</option>
           ))}
@@ -218,9 +242,9 @@ function FieldInput({
       ) : (
         <input
           {...common}
-          type={f.kind}
-          inputMode={f.kind === "number" ? "numeric" : undefined}
-          autoComplete={f.kind === "email" ? "email" : f.kind === "tel" ? "tel" : undefined}
+          type={f.kind === "number" ? "text" : f.kind}
+          inputMode={f.kind === "number" ? "numeric" : f.kind === "tel" ? "tel" : undefined}
+          autoComplete={f.autoComplete ?? (f.kind === "email" ? "email" : f.kind === "tel" ? "tel" : undefined)}
           onChange={(e) => onChange(e.target.value)}
         />
       )}

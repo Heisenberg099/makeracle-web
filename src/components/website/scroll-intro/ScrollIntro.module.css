@@ -1,5 +1,13 @@
 /* Scroll-driven intro: the student pushes the black panel off to the right.
-   JS sets --t (0 → 1) on .stage; everything else is CSS. */
+   --t (0 → 1) on .stage drives everything. Where the browser supports
+   scroll-driven animations, CSS sets --t straight from the scroll position,
+   so the push works before (or without) JavaScript. Elsewhere, JS sets it. */
+
+@property --t {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
 
 .track {
   position: relative;
@@ -91,6 +99,16 @@
   bottom: 32px;
   width: min(360px, 60vw);
   z-index: 3;
+  opacity: calc(1 - var(--t));
+}
+.skip {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .bar { height: 3px; background: var(--ground); margin: 8px 0; }
 .bar span { display: block; height: 3px; background: var(--red); width: calc(var(--t) * 100%); }
@@ -117,4 +135,27 @@
   .title { top: 40%; }
   .student { bottom: 18svh; }
   .tagline { top: auto; bottom: 90px; }
+}
+
+/* Tie --t to the scroll position in CSS (Chrome/Edge 115+, Safari 26+).
+   The range matches the JS fallback: the push runs from 4% to 88% of the track.
+   Animations win over the inline --t that JS also writes, so the two agree. */
+@supports (animation-timeline: view()) {
+  .track { view-timeline: --intro-track block; }
+  .stage {
+    animation: push linear both;
+    animation-timing-function: cubic-bezier(.45, 0, .55, 1); /* ≈ the JS ease-in-out */
+    animation-timeline: --intro-track;
+    animation-range: contain 4% contain 88%;
+  }
+}
+@keyframes push {
+  from { --t: 0; }
+  to { --t: 1; }
+}
+
+/* "Reduce motion": show the finished frame with no long scroll, even before JS loads. */
+@media (prefers-reduced-motion: reduce) {
+  .track { height: 100svh; }
+  .stage { --t: 1 !important; }
 }

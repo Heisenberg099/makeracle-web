@@ -1,47 +1,43 @@
 /**
- * UI strings in English and Hindi.
- * Launch scope: navigation, calls to action and form chrome.
- * Page body copy is English for now — move it here section by section
- * (see docs/I18N.md). Code keywords always stay in English.
+ * Header and navigation strings in English and Hindi (switchable in the
+ * browser today). Page copy lives in src/content/website/en.ts — see docs/I18N.md
+ * for how Hindi page copy will be added. Have a native speaker review every
+ * Hindi string before launch. Code keywords always stay in English.
  */
 export const dictionaries = {
   en: {
     "nav.schools": "For Schools",
     "nav.programmes": "Programmes",
     "nav.workshops": "Workshops",
-    "nav.teachers": "Teachers",
-    "nav.parents": "Parents",
+    "nav.teachers": "For Teachers",
+    "nav.parents": "For Parents",
     "nav.about": "About",
-    "nav.contact": "Contact",
+    "nav.login": "Login",
     "cta.book": "Book a free workshop",
-    "cta.programmes": "See programmes",
-    "cta.pilot": "Request a pilot proposal",
-    "lang.switch": "हिंदी",
-    "lang.label": "Switch language to Hindi",
+    "lang.group": "Language",
+    "lang.en": "English",
+    "lang.hi": "Hindi",
     "menu.open": "Open menu",
     "menu.close": "Close menu",
-    "form.submit": "Send",
-    "form.sending": "Sending…",
-    "form.required": "Required",
+    "whatsapp.label": "Message us on WhatsApp",
+    "home.label": "makeracle home",
   },
   hi: {
     "nav.schools": "स्कूलों के लिए",
     "nav.programmes": "कार्यक्रम",
     "nav.workshops": "वर्कशॉप",
-    "nav.teachers": "शिक्षक",
-    "nav.parents": "अभिभावक",
+    "nav.teachers": "शिक्षकों के लिए",
+    "nav.parents": "अभिभावकों के लिए",
     "nav.about": "हमारे बारे में",
-    "nav.contact": "संपर्क",
+    "nav.login": "लॉगिन",
     "cta.book": "मुफ़्त वर्कशॉप बुक करें",
-    "cta.programmes": "कार्यक्रम देखें",
-    "cta.pilot": "पायलट प्रस्ताव माँगें",
-    "lang.switch": "EN",
-    "lang.label": "भाषा अंग्रेज़ी में बदलें",
+    "lang.group": "भाषा",
+    "lang.en": "अंग्रेज़ी",
+    "lang.hi": "हिंदी",
     "menu.open": "मेन्यू खोलें",
     "menu.close": "मेन्यू बंद करें",
-    "form.submit": "भेजें",
-    "form.sending": "भेजा जा रहा है…",
-    "form.required": "ज़रूरी",
+    "whatsapp.label": "WhatsApp पर संदेश भेजें",
+    "home.label": "makeracle होम",
   },
 } as const;
 

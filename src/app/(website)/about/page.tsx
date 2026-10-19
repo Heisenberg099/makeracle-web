@@ -1,48 +1,44 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { site } from "@/content/website/site";
+import { AlumniBar } from "@/components/website/AlumniBar";
+import { about, seo } from "@/content/website/en";
 
 export const metadata: Metadata = {
-  title: "About us",
-  description: "Makeracle helps Indian schools turn curiosity into creation: project-first AI and coding, led by the school's own teachers.",
+  title: { absolute: seo.about.title },
+  description: seo.about.description,
+  alternates: { canonical: "/about" },
 };
 
-const approach = [
-  ["Project-first", "Every module ends in something real a student can show — not a quiz score."],
-  ["Teacher as facilitator", "The school's own computer teacher leads. We script, train and back them up."],
-  ["Cohorts, not videos", "Students build in pairs and present to their class, not alone in front of a screen."],
-  ["Durable skills over hype", "Decomposition, testing and honesty about what AI gets wrong outlast any tool."],
-];
-
 export default function AboutPage() {
+  const { hero, story, pronunciation, team, values } = about;
   return (
     <>
       <section className="wrap" style={{ paddingTop: 80, paddingBottom: 90 }}>
-        <p className="lbl">About Makeracle</p>
-        <h1 className="cap h-xxl">
-          Make, <span className="ink">not</span> miracle.
+        <p className="lbl">{hero.eyebrow}</p>
+        <h1 className="cap" style={{ fontSize: "clamp(48px, 7vw, 116px)", lineHeight: 0.9 }}>
+          {hero.title}
         </h1>
-        <p className="lead" style={{ maxWidth: 640, marginTop: 40 }}>
-          Our name is about making. We don&apos;t promise that a 12-year-old becomes an AI engineer. We promise that they&apos;ll build something
-          real, understand how it works, and be able to explain it to their parents. <strong>From curiosity to creation.</strong>
-        </p>
+        <div className="stack" style={{ maxWidth: 680, marginTop: 40, gap: 18 }}>
+          {story.map((p) => (
+            <p key={p} className="lead">
+              {p}
+            </p>
+          ))}
+          <p className="sm muted">{pronunciation}</p>
+        </div>
       </section>
 
       <section className="bg-paper">
         <div className="wrap sec">
-          <p className="lbl">Our approach</p>
+          <p className="lbl">{values.title}</p>
           <div className="grid g4 ruled" style={{ marginTop: 20 }}>
-            {approach.map(([t, b], i) => (
-              <div key={t}>
+            {values.items.map((v, i) => (
+              <div key={v}>
                 <p className="cap" style={{ fontSize: 56 }}>
                   0{i + 1}
                 </p>
                 <h2 className="ttl" style={{ fontSize: 26, marginTop: 14 }}>
-                  {t}
+                  {v}
                 </h2>
-                <p className="sm" style={{ marginTop: 10 }}>
-                  {b}
-                </p>
               </div>
             ))}
           </div>
@@ -50,41 +46,37 @@ export default function AboutPage() {
       </section>
 
       <section className="wrap sec">
-        <p className="lbl">Founders and team</p>
-        {/* TODO(content): real photos, names, roles and advisors. */}
-        <div className="grid g4" style={{ marginTop: 20 }}>
-          {["Founder", "Co-founder", "Curriculum lead", "Advisor"].map((r, i) => (
-            <div key={r} className={i % 2 ? "tilt-r" : "tilt-l"}>
-              <div className="placeholder" style={{ aspectRatio: "4 / 5", background: "#fff" }}>
-                [Photo]
-              </div>
-              <p className="ttl" style={{ fontSize: 22, marginTop: 14 }}>
-                [Name]
+        <p className="lbl">{team.title}</p>
+        <div className="grid g3" style={{ marginTop: 20 }}>
+          {team.members.map((m, i) => (
+            <div key={i} className={i % 2 ? "tilt-r" : "tilt-l"}>
+              {m.photo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={m.photo} alt={`${m.name}, ${m.role}`} style={{ width: "100%", aspectRatio: "4 / 5", objectFit: "cover", borderRadius: 6 }} />
+              ) : (
+                <div className="placeholder" style={{ aspectRatio: "4 / 5", background: "#fff" }}>
+                  {team.photoPending}
+                </div>
+              )}
+              <p className="ttl" style={{ fontSize: 24, marginTop: 14 }}>
+                {m.name}
               </p>
-              <p className="sm muted">{r}</p>
+              <p className="sm">{m.role}</p>
+              <p className="sm muted">{m.institution}</p>
+              <p className="sm" style={{ marginTop: 6 }}>
+                {m.line}
+              </p>
+              <p className="sm" style={{ marginTop: 6 }}>
+                <a href={m.linkedin} className="ul">
+                  LinkedIn<span className="sr-only">: {m.name}</span>
+                </a>
+              </p>
             </div>
           ))}
         </div>
-        <p className="sm" style={{ marginTop: 40 }}>
-          {site.legalName} · {site.address}
-        </p>
       </section>
 
-      <section id="careers" className="bg-ink">
-        <div className="wrap sec-sm row-between" style={{ alignItems: "flex-end" }}>
-          <div>
-            <p className="lbl">Careers</p>
-            <h2 className="cap h-l">
-              Trainers, mentors,
-              <br />
-              curriculum designers.
-            </h2>
-          </div>
-          <Link href="/contact" className="btn">
-            Write to us →
-          </Link>
-        </div>
-      </section>
+      <AlumniBar />
     </>
   );
 }
