@@ -24,17 +24,28 @@ export type Post = {
   body: string;
   kind: string; // "Pattern", "Riddle", "Rangoli card", …
   from: string; // where it was made, e.g. "CT 5 · Circle of 12"
-  status: "waiting" | "approved";
+  status: "waiting" | "approved" | "returned";
+  /** Teacher's note when a post is sent back. */
+  note?: string;
   at: string;
 };
 
 export type Made = { id: string; title: string; detail: string; from: string; at: string };
 
-type State = { attempts: Record<string, Attempt>; posts: Post[]; made: Made[]; notes: Record<string, string> };
+type State = {
+  attempts: Record<string, Attempt>;
+  posts: Post[];
+  made: Made[];
+  notes: Record<string, string>;
+  /** Posts this student reacted "I tried it" to. */
+  tried: string[];
+  /** Small saved values: tallies, hours, checklists, switches. */
+  values: Record<string, unknown>;
+};
 
 const KEY = "makeracle.c6.studio";
 const EVENT = "makeracle:c6";
-const empty: State = { attempts: {}, posts: [], made: [], notes: {} };
+const empty: State = { attempts: {}, posts: [], made: [], notes: {}, tried: [], values: {} };
 
 let cache: State | null = null;
 let cacheRaw: string | null = null;
@@ -118,4 +129,34 @@ export async function checkAnswer(body: unknown): Promise<boolean> {
   if (!res.ok) throw new Error("check failed");
   const data = (await res.json()) as { correct: boolean };
   return data.correct;
+}
+
+/** "I tried it" — the only reaction on the class wall. */
+export function toggleTried(postId: string) {
+  const s = load();
+  save({ ...s, tried: s.tried.includes(postId) ? s.tried.filter((x) => x !== postId) : [...s.tried, postId] });
+}
+
+/** Teacher action (demo: same device): approve a post or send it back with a note. */
+export function setPostStatus(id: string, status: Post["status"], note?: string) {
+  const s = load();
+  save({ ...s, posts: s.posts.map((p) => (p.id === id ? { ...p, status, note } : p)) });
+}
+
+/** A small saved value (JSON-safe). */
+export function useValue<T>(key: string, fallback: T) {
+  const state = useStudio();
+  const value = (key in state.values ? state.values[key] : fallback) as T;
+  const set = useCallback(
+    (next: T | ((prev: T) => T)) => {
+      const s = load();
+      const prev = (key in s.values ? s.values[key] : fallback) as T;
+      const v = typeof next === "function" ? (next as (p: T) => T)(prev) : next;
+      save({ ...s, values: { ...s.values, [key]: v } });
+    },
+    // fallback is a literal at each call site
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [key],
+  );
+  return [value, set] as const;
 }
