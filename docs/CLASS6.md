@@ -1,7 +1,7 @@
 # Class 6 CT & AI platform
 
 The Student Studio, Teacher Hub, Parent view and School dashboard for the CBSE Class 6
-Computational Thinking & AI curriculum.
+Computational Thinking & AI curriculum. For the overall folder map see [PROJECT-STRUCTURE.md](PROJECT-STRUCTURE.md).
 
 ## Routes
 
@@ -24,14 +24,17 @@ Computational Thinking & AI curriculum.
 
 ## Where things live
 
-- `src/content/class6/`: **handbook content** (CT chapters, AI chapters, curriculum). This is the only
-  source of questions, answers and solutions. `TODO-images.md` lists the 145 pictures still to extract.
-- `src/content/class6/{studio,aiPaths,aiPractice,projects,hints}.ts`: **Makeracle design copy and
-  practice material, not from the handbook.** Each file says so at the top.
-- `src/lib/types.ts`, `src/lib/mock.ts`: typed demo data (students, classes, wall posts, marks…).
-- `src/lib/class6/answers.ts` + `POST /api/class6/check`: answer checking on the server.
-  `src/lib/class6/public.ts` strips answers and solutions from anything sent to a student's browser.
-- `src/lib/class6/store.ts`: the student's and teacher's work (attempts, hints, posts, approvals,
+- `src/curriculum/class-6/handbook/`: **handbook content** (CT chapters, AI chapters, curriculum). This is the
+  only source of questions, answers and solutions. `src/curriculum/class-6/TODO-images.md` lists the 145
+  pictures still to extract.
+- `src/curriculum/class-6/studio/`: **Makeracle design copy and practice material, not from the
+  handbook** (lab copy, AI paths, AI practice, projects, hints). Each file says so at the top.
+- `src/curriculum/class-6/labs/`: the interactive CT and AI labs for Class 6.
+- `src/lib/types/`, `src/lib/demo-data/`: shared types and fictional demo data (students, classes, wall posts, marks…).
+- `src/curriculum/class-6/server/check-answer.ts` + `POST /api/curriculum/class-6/check`: answer checking on
+  the server. `src/curriculum/class-6/student-safe.ts` strips answers and solutions from anything sent to a
+  student's browser.
+- `src/lib/learning/work-store.ts`: the student's and teacher's work (attempts, hints, posts, approvals,
   marks, observations, consent). **Demo storage in the browser (localStorage)**, so the whole loop
   works on one device. The backend replaces `load`/`save` with API calls; hook shapes stay the same.
 
@@ -48,5 +51,5 @@ Computational Thinking & AI curriculum.
 
 - Real auth (class code + PIN for students, OTP for adults) and role checks: teacher routes are open
   in the demo.
-- Replace `store.ts` storage and `mock.ts` data with APIs; move answer checking behind auth.
-- Extract the handbook pictures (`TODO-images.md`) and review practice hints and Hindi strings.
+- Replace `work-store.ts` storage and `lib/demo-data` with APIs; move answer checking behind auth.
+- Extract the handbook pictures (`src/curriculum/class-6/TODO-images.md`) and review practice hints and Hindi strings.

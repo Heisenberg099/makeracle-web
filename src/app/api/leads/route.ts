@@ -1,5 +1,5 @@
-import { formTypes, validate, type FormType } from "@/lib/forms";
-import { listLeads, saveLead, sendAcknowledgement, type Lead } from "@/lib/leadStore";
+import { formTypes, validate, type FormType } from "@/lib/leads/forms";
+import { listLeads, saveLead, sendAcknowledgement, type Lead } from "@/lib/leads/lead-store";
 
 /** POST /api/leads — every public form submits here. */
 export async function POST(request: Request) {

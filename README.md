@@ -55,24 +55,19 @@ npm start           # serve the production build
 
 ## Project layout
 
+**Start with [docs/PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md)**: the full map and naming rules.
+
 ```
 src/
-  app/
-    page.tsx                 Home (intro + sections)
-    (site)/                  Public pages sharing the header + footer
-    admin/leads/             Internal lead inbox
-    api/leads/route.ts       Form endpoint
-    globals.css              Design tokens + shared styles
-  components/
-    intro/ScrollIntro.tsx    The scroll-driven "push the panel" intro
-    illustrations/           Hand-written SVG illustrations (no image assets)
-    forms/LeadForm.tsx       Renders any form defined in src/lib/forms.ts
-  content/                   Copy and data: site facts, programmes, courses, FAQs
-  i18n/                      English + Hindi UI strings and the language switch
-  lib/
-    forms.ts                 Every form's fields + shared validation
-    leadStore.ts             Where leads go (stub → replace with DB/CRM)
-docs/                        Architecture, i18n, roadmap
+  app/            Routes only, grouped by audience: (website) (auth) (student-studio) (teacher-hub)
+                  (parent) (school-admin) (internal) · URLs never include the (group) names
+  components/     Shared building blocks: brand, layout, ui, website
+  features/       Product screens for any class: studio, teacher, parent, school-admin, auth
+  curriculum/     One folder per class: class-6/ (handbook content, design copy, labs)
+  content/        Website copy
+  i18n/           English + Hindi UI strings
+  lib/            demo-data, types, learning (work store), leads
+docs/             Structure, architecture, Class 6, i18n, roadmap
 ```
 
 ## Before launch

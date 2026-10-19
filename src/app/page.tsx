@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { ScrollIntro } from "@/components/intro/ScrollIntro";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
-import { HeroBurst } from "@/components/illustrations/HeroBurst";
-import { ProjectIcon } from "@/components/illustrations/ProjectIcon";
-import { flagshipProjects } from "@/content/home";
-import { site } from "@/content/site";
+import { ScrollIntro } from "@/components/website/scroll-intro/ScrollIntro";
+import { SiteHeader } from "@/components/website/SiteHeader";
+import { SiteFooter } from "@/components/website/SiteFooter";
+import { HeroBurst } from "@/components/website/illustrations/HeroBurst";
+import { ProjectIcon } from "@/components/website/illustrations/ProjectIcon";
+import { flagshipProjects } from "@/content/website/home";
+import { site } from "@/content/website/site";
 import s from "./home.module.css";
 
 export default function HomePage() {

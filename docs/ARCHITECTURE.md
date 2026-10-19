@@ -1,5 +1,7 @@
 # Architecture
 
+Folder map: [PROJECT-STRUCTURE.md](PROJECT-STRUCTURE.md).
+
 ## Rendering
 
 Almost every page is static (prerendered at build time) for speed on slow connections. Interactive bits are small
@@ -7,11 +9,11 @@ client components:
 
 | Component | Why it's a client component |
 | --- | --- |
-| `components/intro/ScrollIntro.tsx` | reads scroll position |
-| `components/SiteHeader.tsx` | mobile menu, language switch, active link |
-| `components/forms/LeadForm.tsx` | form state and submission |
-| `app/(site)/programmes/CourseCatalog.tsx` | catalogue filters |
-| `app/admin/leads/LeadsTable.tsx` | internal lead inbox |
+| `components/website/scroll-intro/ScrollIntro.tsx` | reads scroll position |
+| `components/website/SiteHeader.tsx` | mobile menu, language switch, active link |
+| `components/website/forms/LeadForm.tsx` | form state and submission |
+| `app/(website)/programmes/CourseCatalog.tsx` | catalogue filters |
+| `app/(internal)/admin/leads/LeadsTable.tsx` | internal lead inbox |
 
 ## The scroll intro
 
@@ -32,8 +34,8 @@ LeadForm (browser) ──POST /api/leads──▶ validate() ──▶ saveLead(
 /admin/leads ──GET /api/leads (x-admin-token)──▶ listLeads()
 ```
 
-- `src/lib/forms.ts` defines every form once; the browser and server share `validate()`.
-- `src/lib/leadStore.ts` is the only file to change when a real backend arrives:
+- `src/lib/leads/forms.ts` defines every form once; the browser and server share `validate()`.
+- `src/lib/leads/lead-store.ts` is the only file to change when a real backend arrives:
   - **Database**: replace the in-memory array. Store data in India (DPDP); keep `source` and `campaign` for
     conversion reporting.
   - **CRM**: set `CRM_WEBHOOK_URL` today (Zapier/Make/Sheets/HubSpot hook) — every lead is POSTed as JSON.

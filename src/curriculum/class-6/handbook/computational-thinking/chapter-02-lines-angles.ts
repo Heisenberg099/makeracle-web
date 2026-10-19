@@ -1,0 +1,266 @@
+import type { CTChapter } from "@/curriculum/class-6/handbook/types";
+import { figureOptions, textOptions } from "./_option-helpers";
+
+/** CT Chapter 2 — Lines and Angles. SH pp. 14–16, TH pp. 18–27. */
+export const ch02: CTChapter = {
+  number: 2,
+  slug: "lines-and-angles",
+  title: "Lines and Angles",
+  page: { sh: [14, 16], th: [18, 27] },
+  questions: [
+    {
+      id: "ct2-q1",
+      chapter: 2,
+      number: 1,
+      prompt: "Eight friends (A, B, C, D, E, F, G, H) are sitting at equidistant positions around a circular table, each facing towards the centre, as shown below. If G is sitting exactly between B and D, what is the angle between the directions that A and C are facing?",
+      details: [
+        "A is facing North-East",
+        "B and D are facing perpendicular directions",
+        "B is to the immediate left of A; while C is exactly between E and F",
+        "B and F are facing opposite directions",
+      ],
+      figure: {
+        id: "ct2-q1-fig",
+        page: { sh: 14, th: 18 },
+        alt: "A circular table with eight equally spaced arrows pointing to the centre. A is marked at the lower-left seat, facing North-East.",
+      },
+      options: textOptions("45 degrees", "90 degrees", "135 degrees", "180 degrees"),
+      answer: ["b"],
+      solution: {
+        steps: [
+          "B is to the immediate left of A. Also, B and F are facing opposite directions.",
+          "B and D are facing perpendicular directions. Two possible arrangements are formed (case 1: D at the top; case 2: D at the bottom).",
+          "C is exactly between E and F.",
+          "However, as G is sitting exactly between B and D, case 2 is invalid. Case 1 gives the final arrangement: D at the top with G and H on either side, B on the left, F on the right, A at the lower left, E at the bottom, C at the lower right.",
+          "As the angle around a circle is 360°, and there are 8 equidistant positions, the angle between two adjacent people = 360/8 = 45°.",
+          "Hence, the angle between the directions of A and C will be 90°. The correct answer is option b.",
+        ],
+      },
+      page: { sh: 14, th: [18, 19] },
+    },
+    {
+      id: "ct2-q2",
+      chapter: 2,
+      number: 2,
+      prompt: "Avi and Sam attend dance sessions in the afternoon. What is the least possible difference between the starting times of both sessions?",
+      details: [
+        "Avi’s session starts when the angle between the hour hand and the minute hand of the clock is 60 degrees",
+        "Sam’s session starts at 1:55 PM",
+      ],
+      options: textOptions("2 minutes", "5 minutes", "10 minutes", "15 minutes"),
+      answer: ["b"],
+      solution: {
+        steps: [
+          "The complete angle around a clock is 360 degrees. So, 60 minutes = 360 degrees, hence 10 minutes = 60 degrees.",
+          "So, 60 degrees exist between the hands of a clock only when they are 10 minutes apart. When Avi’s session started, the hands were 10 minutes apart.",
+          "To minimise the difference, we need a time that gives a 60-degree angle between the hands and is as close to 1:55 as possible.",
+          "The time that gives a 60-degree angle immediately after 1:55 PM is 2:00 PM (one hand at 12 and another at 2, which make 60 degrees).",
+          "Hence, the least possible difference is 2:00 PM − 1:55 PM = 5 minutes. Option b is correct.",
+        ],
+      },
+      page: { sh: 14, th: 19 },
+    },
+    {
+      id: "ct2-q3",
+      chapter: 2,
+      number: 3,
+      prompt: "An equilateral triangle (all the angles are equal) is given below. At minimum, by how many degrees should the given triangle be rotated anticlockwise so that it looks exactly like the original triangle?",
+      figure: {
+        id: "ct2-q3-fig",
+        page: { sh: 14, th: 20 },
+        alt: "An equilateral triangle ABC with base AB horizontal and C at the top, angle C marked 60°.",
+      },
+      options: textOptions("30 degrees", "60 degrees", "120 degrees", "90 degrees"),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "All three angles are 60° (equal angles), and all three sides of the triangle are equal (equilateral triangle).",
+          "We need to rotate the triangle anticlockwise so that side AC lies horizontally (just like the current side AB).",
+          "The angle made by a straight line is 180°, and angle CAB is 60°. To make the next side lie on the same straight line again, the triangle must rotate through the remaining angle: 180° − 60° = 120°.",
+          "Rotating it by 60° does not give the same position (the triangle looks inverted), but rotating it by 120° brings the triangle back to an identical appearance.",
+          "Hence, option c is correct.",
+        ],
+      },
+      page: { sh: 14, th: [20, 21] },
+    },
+    {
+      id: "ct2-q4",
+      chapter: 2,
+      number: 4,
+      prompt: "What will come in place of “?”",
+      figure: {
+        id: "ct2-q4-fig",
+        page: { sh: 14, th: 21 },
+        alt: "Four pairs: a circle with 90 → a circle divided into 4 equal parts; 120 → a circle divided into 3 equal parts; 45 → a circle divided into 8 equal parts; 60 → ?",
+      },
+      options: figureOptions("ct2-q4", { sh: 14, th: 21 }, [
+        "Circle divided into 4 equal parts",
+        "Circle divided into unequal parts",
+        "Circle divided into 6 equal parts",
+        "Circle divided into 8 equal parts",
+      ]),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "The number inside the circle decides how many equal parts the circle is divided into. A full circle is 360 degrees, so we divide 360 by the number inside the circle.",
+          "360 ÷ 90 = 4 parts. 360 ÷ 120 = 3 parts. 360 ÷ 45 = 8 parts.",
+          "Now for 60: 360 ÷ 60 = 6. So, the circle should be divided into 6 equal parts.",
+          "Hence, option c is the correct answer.",
+        ],
+      },
+      page: { sh: 14, th: 21 },
+    },
+    {
+      id: "ct2-q5",
+      chapter: 2,
+      number: 5,
+      prompt: "A and B visit a park in the evening. Based on the given information, which of the following statements is true?",
+      details: [
+        "When A visited the park, the minute hand pointed at 12, and the other hand was 150° clockwise from it",
+        "When B visited the park, the hour hand pointed at 5, and the other hand was 210° clockwise from it",
+      ],
+      options: textOptions(
+        "A visited the park before B",
+        "B visited the park before A",
+        "A and B visited exactly at the same time",
+        "None of the above",
+      ),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "On a clock, a full circle = 360°. There are 12 numbers, so the angle between two adjacent numbers is 360° ÷ 12 = 30°.",
+          "When A visited: the minute hand was at 12 and the hour hand was 150° clockwise from it. 150° ÷ 30° = 5, so the hour hand is at 5. The time was 5:00.",
+          "When B visited: the hour hand was at 5 and the minute hand was 210° clockwise from it. 210° ÷ 30° = 7. Moving 7 numbers clockwise from 5 lands on 12. The time was also 5:00.",
+          "As both visited in the evening, the time was 5:00 pm, so A and B visited exactly at the same time. Option c is correct.",
+        ],
+      },
+      page: { sh: 15, th: [21, 22] },
+    },
+    {
+      id: "ct2-q6",
+      chapter: 2,
+      number: 6,
+      prompt: "What will come in place of “?”",
+      figure: {
+        id: "ct2-q6-fig",
+        page: { sh: 15, th: 22 },
+        alt: "Four sets, each with two clock faces with a shaded wedge between their hands and a box in the middle. Set 1 shows 60°, set 2 shows 120°, set 3 shows 90°, set 4 shows ?",
+      },
+      options: textOptions("40°", "60°", "90°", "30°"),
+      answer: ["b"],
+      solution: {
+        steps: [
+          "A clock is a circle of 360° with 12 numbers, so the gap between two numbers is 30°. In each set, find the common angle covered by the hands of both clocks.",
+          "First set: the common part covers 2 number gaps (9 to 11): 2 × 30° = 60°.",
+          "Second set: the common part covers 4 number gaps (6 to 10): 4 × 30° = 120°.",
+          "Third set: the common part covers 3 number gaps (1 to 4): 3 × 30° = 90°.",
+          "Question set: the common part covers 2 number gaps (2 to 4): 2 × 30° = 60°. Hence, option b is the correct answer.",
+        ],
+      },
+      page: { sh: 15, th: [22, 23] },
+    },
+    {
+      id: "ct2-q7",
+      chapter: 2,
+      number: 7,
+      prompt: "How many times in a day, on a 12-hour format clock, do the minute and hour hands form a straight line (i.e., an angle of 180°)?",
+      options: textOptions("11", "12", "22", "24"),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "The minute hand moves faster than the hour hand, so it repeatedly moves ahead and at certain moments the two hands become exactly opposite, forming a straight line (180°).",
+          "Examine the clock hour by hour from 12:00 a.m. to 12:00 p.m. These 12 hours divide into 12 intervals (12:00–1:00, 1:00–2:00, …, 11:00–12:00). In most intervals, the hands form a straight line exactly once.",
+          "Special situation around 6 o’clock: at 6:00 the hands are already exactly opposite. The 5:00–6:00 interval counts the straight line at 6:00, and the 6:00–7:00 interval counts the same one again, so it is counted twice.",
+          "Therefore, from the 12 possible hourly cases we subtract 1: in 12 hours the hands form a straight line 12 − 1 = 11 times.",
+          "Since a day has 24 hours, this happens twice: 11 × 2 = 22. Option c is the correct answer.",
+        ],
+      },
+      page: { sh: 15, th: 23 },
+    },
+    {
+      id: "ct2-q8",
+      chapter: 2,
+      number: 8,
+      prompt: "In the given figure, Triangle 2 is a right-angled triangle. Both triangles are arranged such that the red circles completely overlap, meaning both triangles meet at point P. The triangles cannot be rotated or flipped. If an angle of 30° is formed between Triangle 1 and Triangle 2 at point P, find the value of ∠APD?",
+      figure: {
+        id: "ct2-q8-fig",
+        page: { sh: 15, th: 23 },
+        alt: "Triangle 1 (A at the top, B and P at the base, red circle at P) and Triangle 2 (right-angled, C at the top, P and D at the base, red circle at P).",
+      },
+      options: textOptions("110°", "120°", "130°", "150°"),
+      answer: ["b"],
+      solution: {
+        steps: [
+          "When triangles 1 and 2 are arranged so that the red circles overlap, they meet at P with A and C above.",
+          "An angle of 30° is formed between Triangle 1 and Triangle 2 at P. In the image, this is the acute angle ∠APC, so ∠APC = 30°.",
+          "Triangle 2 is a right-angled triangle, so ∠CPD = 90°.",
+          "∠APD = ∠APC + ∠CPD = 30° + 90° = 120°. Therefore, the correct answer is option b.",
+        ],
+      },
+      page: { sh: 15, th: [23, 24] },
+    },
+    {
+      id: "ct2-q9",
+      chapter: 2,
+      number: 9,
+      prompt: "Sam draws three line segments AB, BC, and BD (with a common point B) on a sheet of paper. ∠ABC = 108° and ∠CBD = 162°, and these angles lie on either side of the line segment BC. Later, he draws a pair of parallel line segments EF and GH, both perpendicularly intersecting BD. How many pairs of parallel line segments appear on the sheet, finally?",
+      options: textOptions("1", "2", "3", "4"),
+      answer: ["c"],
+      solution: {
+        steps: [
+          "∠ABC = 108° and ∠CBD = 162° lie on either side of BC. So, ∠ABD = 360° − (108° + 162°) = 360° − 270° = 90°. This means AB is perpendicular to BD.",
+          "EF and GH are drawn perpendicular to BD.",
+          "Whatever the case, as AB is perpendicular to BD and both EF and GH are also perpendicular to BD, all of them are parallel to each other.",
+          "The pairs of parallel line segments are: AB - EF, AB - GH, EF - GH. Hence, there are three such pairs. Option c is the correct answer.",
+        ],
+      },
+      page: { sh: 15, th: [24, 25] },
+    },
+    {
+      id: "ct2-q10",
+      chapter: 2,
+      number: 10,
+      prompt: "A line segment AB is shown below. Five points: C, D, E, F, and G lie on the line segment AB such that the conditions below hold. Which segment among the following options is the longest?",
+      details: [
+        "All the points (including A and B) are at equal intervals",
+        "The length of segment CB is equal to the length of segment GD",
+        "Point E is immediately to the right of point C",
+        "Point F cannot be next to E or D",
+      ],
+      figure: {
+        id: "ct2-q10-fig",
+        page: { sh: 16, th: 25 },
+        alt: "A line segment from A (left) to B (right) with five equally spaced points between them; arrows labelled Left and Right.",
+      },
+      options: textOptions("GC", "FE", "GE", "FD"),
+      answer: ["d"],
+      solution: {
+        steps: [
+          "We cannot place C immediately next to B, as E is on the immediate right of C.",
+          "We also cannot place C immediately next to A, as CB must equal GD, and it is not possible to have both G and D between C and B.",
+          "There are three possibilities for the positions of C and E, and matching placements for G and D.",
+          "As F cannot be next to E or D, the first and third cases are eliminated. The final arrangement is: A, F, G, C, E, D, B.",
+          "Clearly, among the given options, FD is the longest line segment. Option d is the correct answer.",
+        ],
+      },
+      page: { sh: 16, th: [25, 26] },
+    },
+  ],
+  thinkingSpot: {
+    id: "ct2-ts",
+    chapter: 2,
+    prompt: "There are four ropes: A, B, C, and D. Each rope has a different length and a different colour chosen from Blue, Red, Green, and Yellow. Rope B is longer than only the Green rope. The Blue rope is longer than B but shorter than C. Rope A is not Blue. If the Yellow rope is the longest, which rope is Red?",
+    options: textOptions("A", "B", "C", "D"),
+    answer: ["b"],
+    solution: {
+      steps: [
+        "Ropes A, B, C and D have different lengths and colours.",
+        "Rope B is longer than only the green rope, so B is second shortest and the shortest rope is green.",
+        "The blue rope is longer than B but shorter than C, so the order is C > Blue > B > Green.",
+        "A is not blue, so D is blue and A is the shortest (green): C > D > B > A.",
+        "The longest rope is yellow, so C is yellow. Therefore, B is the red rope. Option b is correct.",
+      ],
+    },
+    page: { sh: 16, th: 27 },
+  },
+};
